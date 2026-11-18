@@ -8,7 +8,7 @@ export type Profile = {
   intro: string
   /** The year I started coding; the footer counts the years from it. */
   codingSince: number
-  /** Where the CV button points (a PDF in public/, or the live rika-cv). Empty = placeholder button. */
+  /** Where the CV button points (the live CV site, or a PDF in public/). Empty = placeholder button. */
   cv: string
   links: Link[]
 }
@@ -19,7 +19,7 @@ export const profile: Profile = {
   role: 'Full-stack Developer',
   intro: 'A short introduction goes here: who I am, what I work on, and what I am most proud of.',
   codingSince: 2020,
-  cv: '',
+  cv: 'https://mazsola739.github.io/cv/',
   links: [
     { label: 'GitHub', href: 'https://github.com/mazsola739' },
     { label: 'GitLab', href: 'https://gitlab.com/mazsola739' },
