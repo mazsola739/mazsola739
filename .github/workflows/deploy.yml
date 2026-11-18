@@ -19,18 +19,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run lint:ci
+      - run: bun run build
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   deploy:
     needs: build
+    # GitHub Pages needs a public repo on the free plan: while the repo is private, only lint + build run.
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
     environment:
       name: github-pages

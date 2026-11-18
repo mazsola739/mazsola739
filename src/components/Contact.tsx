@@ -1,21 +1,22 @@
 import { isExternal, profile } from '../data/profile.ts'
+import { Section } from './Section.tsx'
 
 export function Contact() {
   return (
-    <section id="contact" className="section container" aria-labelledby="contact-title">
-      <header className="section__header">
-        <h2 id="contact-title">Contact</h2>
-        <p>Where to find me.</p>
-      </header>
-      <ul className="contact-links">
+    <Section id="contact" title="Contact" subtitle="Where to find me.">
+      <ul className="flex flex-wrap gap-6">
         {profile.links.map((link) => (
           <li key={link.href}>
-            <a href={link.href} {...(isExternal(link.href) && { target: '_blank', rel: 'noreferrer' })}>
+            <a
+              className="text-xl font-semibold transition-colors hover:text-accent"
+              href={link.href}
+              {...(isExternal(link.href) && { target: '_blank', rel: 'noreferrer' })}
+            >
               {link.label} ↗
             </a>
           </li>
         ))}
       </ul>
-    </section>
+    </Section>
   )
 }

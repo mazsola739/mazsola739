@@ -1,11 +1,11 @@
+import { Section } from './Section.tsx'
+
 export function About() {
   return (
-    <section id="about" className="section container" aria-labelledby="about-title">
-      <header className="section__header">
-        <h2 id="about-title">About</h2>
-        <p>Who I am and what I work with.</p>
-      </header>
-      <div className="placeholder">An introduction, my work experience and my skills are coming soon.</div>
-    </section>
+    <Section id="about" title="About" subtitle="Who I am and what I work with.">
+      <div className="rounded-2xl border border-dashed border-line p-6 text-muted">
+        An introduction, my work experience and my skills are coming soon.
+      </div>
+    </Section>
   )
 }

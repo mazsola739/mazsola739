@@ -6,23 +6,32 @@ My portfolio: the place to open my CV and my projects, from my first small proje
 
 ## Stack
 
-Vite · React 19 · TypeScript · GitHub Pages (GitHub Actions)
+[Bun](https://bun.sh) · [Vite](https://vite.dev) · React 19 · TypeScript · [Tailwind CSS 4](https://tailwindcss.com) ·
+[Biome](https://biomejs.dev) · GitHub Pages (GitHub Actions)
 
 ## Run locally
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
-Production build: `npm run build` → the output goes to `dist/`.
+| Script              | What it does                                                   |
+| ------------------- | -------------------------------------------------------------- |
+| `bun run dev`       | dev server with hot reload                                     |
+| `bun run build`     | type check + production build into `dist/`                     |
+| `bun run preview`   | serve the production build locally                             |
+| `bun run typecheck` | TypeScript check only                                          |
+| `bun run lint`      | Biome: lint, formatting, import order and Tailwind class order |
+| `bun run format`    | apply every safe Biome fix and format the code                 |
 
 ## Content
 
 - `src/data/profile.ts` – name, role, introduction, CV, links
 - `src/data/projects.ts` – levels and projects
+- `src/index.css` – Tailwind theme: colors (light and dark) and the page width
 
 ## Deployment
 
-Every push to `main` is built and published by `.github/workflows/deploy.yml`.
+Every push to `main` is linted, built and published by `.github/workflows/deploy.yml`.
 One-time setup in the repository: **Settings → Pages → Source: GitHub Actions**.
