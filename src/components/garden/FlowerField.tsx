@@ -1,31 +1,22 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { BUTTERFLY_WINGS, type FlowerKind, isTall, type Wings } from './art.tsx'
+import {
+  BUTTERFLIES,
+  type FlowerKind,
+  isTall,
+  ROUND_FLOWERS,
+  STARS,
+  TALL_FLOWERS,
+  TALL_RATIO,
+} from './art.tsx'
 import { Flutter, type Spot } from './Flutter.tsx'
 import { newSeed, pickAvoiding, seededRandom } from './random.ts'
 import { ShyFlower } from './ShyFlower.tsx'
 
-/** Daisies, peonies and tulips come up more often, like on the card. */
-const KINDS: FlowerKind[] = [
-  'daisy',
-  'daisy',
-  'red',
-  'yellow',
-  'blue',
-  'orange',
-  'pink',
-  'white',
-  'purple',
-  'peony',
-  'peony',
-  'tulip',
-  'tulip',
-  'sprig',
-  'star',
-  'star',
-]
+/** Flower heads come up twice as often as the flowers with a stem and the stars. */
+const KINDS: FlowerKind[] = [...ROUND_FLOWERS, ...ROUND_FLOWERS, ...TALL_FLOWERS, ...STARS]
 
 /** Small flowers that grow next to a bigger one (no stems: they would cross). */
-const COMPANIONS: FlowerKind[] = ['daisy', 'white', 'red', 'yellow', 'purple', 'star']
+const COMPANIONS: FlowerKind[] = [...ROUND_FLOWERS, ...STARS]
 
 type Bloom = {
   id: number
@@ -38,7 +29,7 @@ type Bloom = {
   duration: number
 }
 
-type Resting = { id: number; wings: Wings; size: number; start: Spot }
+type Resting = { id: number; src: string; size: number; start: Spot }
 
 /** The page column is at most 1040px wide (see the wrapper utility), with a 1rem gutter. */
 const COLUMN = 1040
@@ -63,7 +54,7 @@ function recentKinds() {
 
 const centre = (bloom: Bloom) => ({
   x: bloom.x + bloom.size / 2,
-  y: bloom.y + (isTall(bloom.kind) ? bloom.size * 0.75 : bloom.size / 2),
+  y: bloom.y + (isTall(bloom.kind) ? (bloom.size * TALL_RATIO) / 2 : bloom.size / 2),
 })
 
 /** True if a flower of the same kind already grows within SAME_KIND_GAP of (x, y). */
@@ -113,8 +104,8 @@ function scatterFlowers(width: number, height: number, seed: number): Bloom[] {
       const kind = pickAvoiding(random, KINDS, recent.kinds)
       recent.add(kind)
       const base = wide ? 22 + random() * 14 : 24 + random() * 8
-      const size = Math.round(base * (kind === 'star' ? 0.85 : 1))
-      const tall = isTall(kind) ? size * 1.5 : size
+      const size = Math.round(base * (kind.shape === 'star' ? 0.85 : 1))
+      const tall = isTall(kind) ? size * TALL_RATIO : size
       const x = marginX(random, width, size, side)
       const y = top + random() * Math.max(step - tall, 0)
       blooms.push({
@@ -201,8 +192,8 @@ function scatterInside(layer: HTMLElement, seed: number, edge: Bloom[]): Bloom[]
 
   for (let attempt = 0; attempt < wanted * 80 && blooms.length < wanted; attempt++) {
     const kind = pickAvoiding(random, KINDS, recent.kinds)
-    const size = Math.round((20 + random() * 10) * (kind === 'star' ? 0.9 : 1))
-    const tall = isTall(kind) ? size * 1.5 : size
+    const size = Math.round((20 + random() * 10) * (kind.shape === 'star' ? 0.9 : 1))
+    const tall = isTall(kind) ? size * TALL_RATIO : size
     const x = gutter + random() * Math.max(width - 2 * gutter - size, 1)
     // Not under the sticky header at the very top, nor in the footer's last pixels.
     const y = 90 + random() * Math.max(height - 160 - tall, 1)
@@ -245,18 +236,18 @@ function restingSpot(random: () => number, width: number, height: number, y: num
   }
 }
 
-/** One resting butterfly of each kind: the first two near the top, so they are seen right away. */
+/** One resting butterfly of each picture: the first two near the top, so they are seen right away. */
 function placeButterflies(width: number, height: number, seed: number): Resting[] {
   if (!width || !height) return []
   const random = seededRandom(seed ^ 0x5bd1e995)
-  return BUTTERFLY_WINGS.map((wings, id) => {
+  return BUTTERFLIES.map((src, id) => {
     const y = id < 2 ? 140 + random() * 420 : 200 + random() * Math.max(height - 400, 1)
-    return { id, wings, size: BUTTERFLY_SIZE, start: restingSpot(random, width, height, y) }
+    return { id, src, size: BUTTERFLY_SIZE, start: restingSpot(random, width, height, y) }
   })
 }
 
 /**
- * The garden around the page: flowers in the margins (they close when clicked) and
+ * The garden around the page: flowers in the margins (they disappear when clicked and grow back) and
  * butterflies resting in the margins (they fly off to a new spot when clicked).
  */
 export function FlowerField() {
@@ -321,7 +312,7 @@ export function FlowerField() {
               left: bloom.x,
               top: bloom.y,
               width: bloom.size,
-              height: isTall(bloom.kind) ? bloom.size * 1.5 : bloom.size,
+              height: isTall(bloom.kind) ? bloom.size * TALL_RATIO : bloom.size,
               transform: `rotate(${bloom.rotate}deg)`,
             }}
           >
@@ -342,7 +333,7 @@ export function FlowerField() {
         {butterflies.map((butterfly) => (
           <Flutter
             key={butterfly.id}
-            wings={butterfly.wings}
+            src={butterfly.src}
             size={butterfly.size}
             start={butterfly.start}
             nextSpot={nextSpot}

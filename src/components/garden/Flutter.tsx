@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { Butterfly, type Wings } from './art.tsx'
+import { Butterfly } from './art.tsx'
 
 /** Where a butterfly sits: percentages of its container, and the angle it faces. */
 export type Spot = { left: number; top: number; rotate: number }
 
 type FlutterProps = {
-  wings: Wings
+  /** The butterfly picture. */
+  src: string
   size: number
   start: Spot
   /** Picks the next place to land, when the butterfly is clicked. */
@@ -21,7 +22,7 @@ const turnBetween = (from: number, to: number) => ((((to - from) % 360) + 540) %
  * A butterfly that rests (wings slowly opening and closing) until it is clicked, then flies
  * along a curved, slightly wobbly path to a new spot, faces where it is going, and lands.
  */
-export function Flutter({ wings, size, start, nextSpot }: FlutterProps) {
+export function Flutter({ src, size, start, nextSpot }: FlutterProps) {
   const ref = useRef<HTMLDivElement>(null)
   const frame = useRef(0)
   const [spot, setSpot] = useState(start)
@@ -102,7 +103,7 @@ export function Flutter({ wings, size, start, nextSpot }: FlutterProps) {
         zIndex: flying ? 30 : undefined,
       }}
     >
-      <Butterfly wings={wings} className="size-full" />
+      <Butterfly src={src} className="size-full" />
     </div>
   )
 }

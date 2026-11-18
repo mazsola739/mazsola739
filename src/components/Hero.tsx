@@ -47,12 +47,12 @@ export function Hero() {
         </div>
       </div>
 
-      {/* The unicorn from the "You are sweet." card, turned towards the name; it stands on the section line. */}
+      {/* The unicorn in the style of the "You are sweet." card, looking towards the name. */}
       <img
-        className="mx-auto w-[clamp(13rem,28vw,21rem)] self-end md:mx-0"
+        className="mx-auto w-[clamp(12rem,26vw,19rem)] self-end pb-6 md:mx-0"
         src={unicorn}
         alt=""
-        width={806}
+        width={741}
         height={900}
       />
     </section>
