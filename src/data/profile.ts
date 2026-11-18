@@ -19,7 +19,7 @@ export const profile: Profile = {
   role: 'Full-stack Developer',
   intro: 'A short introduction goes here: who I am, what I work on, and what I am most proud of.',
   codingSince: 2020,
-  cv: 'https://mazsola739.github.io/cv/',
+  cv: 'https://mazsola739.github.io/rika-cv/',
   links: [
     { label: 'GitHub', href: 'https://github.com/mazsola739' },
     { label: 'GitLab', href: 'https://gitlab.com/mazsola739' },
