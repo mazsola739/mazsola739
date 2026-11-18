@@ -1,8 +1,8 @@
-# mazsola739.github.io
+# Portfolio
 
 My portfolio: the place to open my CV and my projects, from my first small projects to complex systems.
 
-**Live site:** https://mazsola739.github.io
+**Live site** (once the repository is public): https://mazsola739.github.io/mazsola739/
 
 ## Stack
 
