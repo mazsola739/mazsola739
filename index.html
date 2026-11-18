@@ -4,8 +4,22 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Erika Rostás – front-end developer. Projects from first steps to complex systems." />
+    <meta name="description" content="Erika Rostás – full-stack developer. Projects from first steps to complex systems." />
     <title>Erika Rostás – Portfolio</title>
+    <script>
+      // Pick the theme before the first paint, so the page never flashes the wrong colors:
+      // the visitor's saved choice, or the system setting when there is none.
+      ;(() => {
+        let theme
+        try {
+          theme = localStorage.getItem('theme')
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

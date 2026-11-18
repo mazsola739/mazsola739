@@ -1,13 +1,63 @@
 @import "tailwindcss";
 
-/* Color tokens: utilities like bg-page, text-muted, border-line, text-accent. */
+/*
+ * Colors from the "You are sweet." unicorn card: turquoise sky, a rainbow mane
+ * (indigo → purple → lavender → pink → raspberry), raspberry text and a golden horn.
+ * Utilities: bg-page, text-muted, border-line, text-accent, text-sky, bg-gold…
+ * Light theme here: a softened version of the card's turquoise is the page (the full #3db5c9
+ * is too strong for long reading), white cards sit on it like the white unicorn.
+ * Raspberry (accent) small text is only used on white.
+ * The dark theme overrides the same tokens below.
+ */
 @theme {
-  --color-page: #f7f6f3;
+  --color-page: #b4e3ea;
   --color-surface: #ffffff;
-  --color-ink: #16181b;
-  --color-muted: #5f6368;
-  --color-line: #e3e1dc;
-  --color-accent: #0b7f8c;
+  --color-ink: #2a2463;
+  --color-muted: #4b4787;
+  --color-line: #94cdd8;
+  --color-accent: #c8215e;
+  --color-sky: #0f7482;
+  --color-gold: #f2b43a;
+
+  /* The big name: indigo → purple → raspberry, like the mane and the card's "sweet.". */
+  --color-name-1: #2a2463;
+  --color-name-2: #6b4fa8;
+  --color-name-3: #c8215e;
+
+  /* The garden: butterflies flap their wings, flowers sway. */
+  --animate-flap: flap 0.3s ease-in-out infinite;
+  --animate-sway: sway 3s ease-in-out infinite;
+
+  @keyframes flap {
+    0%,
+    100% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(0.22);
+    }
+  }
+
+  /* A wobbly back-and-forth turn, with a little extra swing on each side. */
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-12deg);
+    }
+    45% {
+      transform: rotate(13deg);
+    }
+    55% {
+      transform: rotate(10deg);
+    }
+  }
+
+  /* The mane, outside to inside: the rainbow stripe under the header. */
+  --color-mane-1: #3a2f8f;
+  --color-mane-2: #7a5cc2;
+  --color-mane-3: #b39ae6;
+  --color-mane-4: #f49bc4;
+  --color-mane-5: #e0367a;
 }
 
 /* Page width: at most 1040px, with a 1rem gutter on small screens. */
@@ -16,21 +66,58 @@
   margin-inline: auto;
 }
 
+/* The rainbow mane, ending in the golden horn. */
+@utility bg-mane {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-mane-1),
+    var(--color-mane-2),
+    var(--color-mane-3),
+    var(--color-mane-4),
+    var(--color-mane-5),
+    var(--color-gold)
+  );
+}
+
+/* Gradient text for the name, readable in both themes. */
+@utility text-mane {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-name-1),
+    var(--color-name-2),
+    var(--color-name-3)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
 @layer base {
-  /* Dark mode follows the system setting: only the color tokens change. */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-page: #101214;
-      --color-surface: #171a1d;
-      --color-ink: #eceae6;
-      --color-muted: #9ba0a6;
-      --color-line: #2a2e33;
-      --color-accent: #4fc3cf;
-    }
+  /*
+   * Dark theme: the same turquoise sky at night, with pink, lavender and gold highlights.
+   * index.html sets data-theme before the first paint: the visitor's saved choice,
+   * or the system setting when there is none.
+   */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-page: #0b2e36;
+    --color-surface: #113c46;
+    --color-ink: #f2fbfd;
+    --color-muted: #a9d4dd;
+    --color-line: #22525d;
+    --color-accent: #ff7ab0;
+    --color-sky: #5ad6e8;
+    --color-gold: #f6c445;
+    --color-name-1: #f2fbfd;
+    --color-name-2: #c3b5ff;
+    --color-name-3: #ff7ab0;
+    --color-mane-1: #5b4fd0;
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
   }
 
   html {
-    color-scheme: light dark;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
@@ -42,10 +129,10 @@
   }
 
   body {
-    @apply bg-page leading-relaxed text-ink antialiased;
+    @apply bg-page leading-relaxed text-ink antialiased transition-colors duration-300;
   }
 
   :focus-visible {
-    @apply rounded-sm outline-2 outline-accent outline-offset-3;
+    @apply rounded-sm outline-2 outline-ink outline-offset-3;
   }
 }

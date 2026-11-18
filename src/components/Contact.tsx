@@ -1,4 +1,5 @@
 import { isExternal, profile } from '../data/profile.ts'
+import { LinkIcon } from './icons.tsx'
 import { Section } from './Section.tsx'
 
 export function Contact() {
@@ -8,11 +9,12 @@ export function Contact() {
         {profile.links.map((link) => (
           <li key={link.href}>
             <a
-              className="text-xl font-semibold transition-colors hover:text-accent"
+              className="inline-flex items-center gap-2 text-xl font-semibold decoration-accent decoration-2 underline-offset-4 hover:underline"
               href={link.href}
               {...(isExternal(link.href) && { target: '_blank', rel: 'noreferrer' })}
             >
-              {link.label} ↗
+              <LinkIcon href={link.href} />
+              {link.label}
             </a>
           </li>
         ))}
