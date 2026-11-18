@@ -16,10 +16,13 @@ export function Hero() {
         </p>
         <h1
           id="hero-title"
-          className="mt-4 mb-5 w-fit text-mane text-[clamp(2.5rem,7vw,4.75rem)] leading-[1.1] font-bold tracking-tight"
+          className="mt-4 mb-1 w-fit text-mane text-[clamp(2.5rem,7vw,4.75rem)] leading-[1.1] font-bold tracking-tight"
         >
           {profile.name}
         </h1>
+        <p className="mb-5 text-[clamp(1.1rem,2.4vw,1.4rem)] text-muted">
+          but you can call me <strong className="font-bold text-ink">{profile.nickname}</strong>
+        </p>
         <p className="max-w-160 text-[clamp(1.05rem,2.2vw,1.25rem)] text-muted">{profile.intro}</p>
 
         <div className="mt-8 flex flex-wrap gap-3">

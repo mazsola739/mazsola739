@@ -2,6 +2,8 @@ export type Link = { label: string; href: string }
 
 export type Profile = {
   name: string
+  /** What people call me; shown under the name. */
+  nickname: string
   role: string
   intro: string
   /** The year I started coding; the footer counts the years from it. */
@@ -13,6 +15,7 @@ export type Profile = {
 
 export const profile: Profile = {
   name: 'Erika Rostás',
+  nickname: 'Rika',
   role: 'Full-stack Developer',
   intro: 'A short introduction goes here: who I am, what I work on, and what I am most proud of.',
   codingSince: 2020,

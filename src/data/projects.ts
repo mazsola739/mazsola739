@@ -3,6 +3,7 @@ import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
+import rikatas from '../assets/projects/rikatas.webp'
 
 export type Level = {
   id: number
@@ -79,6 +80,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-ipsum/',
     repo: 'https://github.com/mazsola739/rika-ipsum',
     image: rikaIpsum,
+  },
+  {
+    title: 'Rikatas',
+    level: 1,
+    year: '2021',
+    description:
+      'My Codewars homework from the Junior Front-End Online Program: 169 of 173 katas solved in JavaScript, many of them refactored, and a site to browse them. Search by kata name or by method (e.g. map), filter by kyu, open a kata to see the task and my solution, and see which methods I used the most. Codewars look, with a dark / light mode.',
+    tags: ['JavaScript', 'HTML', 'CSS', 'Codewars', 'highlight.js'],
+    live: 'https://mazsola739.github.io/rikatas/',
+    repo: 'https://github.com/mazsola739/rikatas',
+    image: rikatas,
   },
   {
     title: 'Maze Escape Solver',
