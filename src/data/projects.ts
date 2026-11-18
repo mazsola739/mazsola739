@@ -1,3 +1,5 @@
+import rikaflix from '../assets/projects/rikaflix.webp'
+
 export type Level = {
   id: number
   title: string
@@ -49,4 +51,16 @@ export const levels: Level[] = [
 ]
 
 /** Projects are added here one by one. */
-export const projects: Project[] = []
+export const projects: Project[] = [
+  {
+    title: 'Rikaflix',
+    level: 2,
+    year: '2024',
+    description:
+      'A streaming-site-style movie and TV show browser with 600+ titles: search, genre filters, sorting, paging, a detail page and add / edit / delete. It started as the React home task of the EPAM mentoring program and runs fully in the browser, without a server.',
+    tags: ['React', 'TypeScript', 'Redux Toolkit', 'RTK Query', 'Emotion', 'Formik', 'Vitest'],
+    live: 'https://mazsola739.github.io/rikaflix/',
+    repo: 'https://github.com/mazsola739/rikaflix',
+    image: rikaflix,
+  },
+]
