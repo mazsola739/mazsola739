@@ -1,3 +1,4 @@
+import frontEndLab from '../assets/projects/front-end-lab.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
@@ -91,6 +92,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatas/',
     repo: 'https://github.com/mazsola739/rikatas',
     image: rikatas,
+  },
+  {
+    title: 'Front-end Lab',
+    level: 1,
+    year: '2021',
+    description:
+      'My homework from the EPAM Front-end Lab (FL-HU1), the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS, SCSS and Bootstrap pages run as they were built for the course; the JavaScript tasks are rebuilt with React 19 and TypeScript, with unit tests. Renovated in 2026.',
+    tags: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript', 'React', 'TypeScript', 'Vitest'],
+    live: 'https://mazsola739.github.io/rika-fl-hu1/',
+    repo: 'https://github.com/mazsola739/rika-fl-hu1',
+    image: frontEndLab,
   },
   {
     title: 'Maze Escape Solver',
