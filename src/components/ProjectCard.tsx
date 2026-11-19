@@ -6,7 +6,8 @@ const linkClass = 'inline-flex items-center gap-1.5 font-semibold text-accent ho
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="relative flex">
+    // On phones the cards sit in a swipeable row (see Projects): fixed width, snapping into place.
+    <div className="relative flex w-[min(85%,22rem)] shrink-0 snap-start md:w-auto">
       <article className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-line bg-surface">
         {project.image && (
           <img
@@ -16,7 +17,7 @@ export function ProjectCard({ project }: { project: Project }) {
             loading="lazy"
           />
         )}
-        <div className="flex flex-1 flex-col gap-2.5 p-5">
+        <div className="flex flex-1 flex-col gap-2.5 p-4 sm:p-5">
           <p className="text-xs font-semibold text-muted">{project.year}</p>
           <h4 className="text-lg leading-tight font-bold tracking-tight">{project.title}</h4>
           <p className="text-[0.95rem] text-muted">{project.description}</p>

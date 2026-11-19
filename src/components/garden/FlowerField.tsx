@@ -35,6 +35,8 @@ type Resting = { id: number; src: string; size: number; start: Spot }
 const COLUMN = 1040
 /** All butterflies are the same size. */
 const BUTTERFLY_SIZE = 40
+/** On phones (no margins) only a few butterflies, resting in the empty gaps. */
+const PHONE_BUTTERFLIES = 4
 /** A new flower is never the same kind as the last few ones… */
 const RECENT = 5
 /** …nor closer than this (px, centre to centre) to another flower of its kind. */
@@ -66,45 +68,35 @@ const kindNearby = (blooms: Bloom[], kind: FlowerKind, x: number, y: number) =>
   })
 
 const gutterOf = (width: number) => (width - Math.min(width - 32, COLUMN)) / 2
+/** Phones and small tablets: the side margins are too narrow for flowers. */
+const isNarrow = (width: number) => gutterOf(width) < 90
 
-/**
- * A random x (px) outside the text column: anywhere in the side margins on wide screens,
- * right at the edge (partly off-screen) on narrow ones.
- */
+/** A random x (px) for something `size` wide, anywhere in the left or the right margin. */
 function marginX(random: () => number, width: number, size: number, side: 'left' | 'right') {
-  const gutter = gutterOf(width)
-  if (gutter >= 90) {
-    const room = Math.max(gutter - size - 16, 0)
-    return side === 'left' ? 8 + random() * room : width - 8 - size - random() * room
-  }
-  // Only about 40% shows, so it stays inside the 1rem gutter and off the text.
-  return side === 'left' ? -size * 0.6 : width - size * 0.4
+  const room = Math.max(gutterOf(width) - size - 16, 0)
+  return side === 'left' ? 8 + random() * room : width - 8 - size - random() * room
 }
 
 /**
  * Scatters flowers down the page edges, outside the text column. Each slot gets one flower per
- * side at a random height, so they never pile up; on wide screens about every fifth one has a
- * small companion growing next to it.
+ * side at a random height, so they never pile up; about every eighth one has a small companion
+ * growing next to it. Only on wide screens: on phones there is no margin, and flowers at the
+ * edge would hang over the text and the cards (scatterInside places a few more there instead).
  */
 function scatterFlowers(width: number, height: number, seed: number): Bloom[] {
-  if (!width || !height) return []
+  if (!width || !height || isNarrow(width)) return []
   const random = seededRandom(seed)
   const gutter = gutterOf(width)
-  const wide = gutter >= 90
-  const step = wide ? 380 : 600
+  const step = 380
   const blooms: Bloom[] = []
   const recent = recentKinds()
   const sway = () => ({ delay: -random() * 4, duration: 2.4 + random() * 1.6 })
 
-  for (let top = 90, slot = 0; top < height - 90; top += step, slot++) {
-    const sides = wide
-      ? (['left', 'right'] as const)
-      : ([slot % 2 === 0 ? 'left' : 'right'] as const)
-    for (const side of sides) {
+  for (let top = 90; top < height - 90; top += step) {
+    for (const side of ['left', 'right'] as const) {
       const kind = pickAvoiding(random, KINDS, recent.kinds)
       recent.add(kind)
-      const base = wide ? 22 + random() * 14 : 24 + random() * 8
-      const size = Math.round(base * (kind.shape === 'star' ? 0.85 : 1))
+      const size = Math.round((22 + random() * 14) * (kind.shape === 'star' ? 0.85 : 1))
       const tall = isTall(kind) ? size * TALL_RATIO : size
       const x = marginX(random, width, size, side)
       const y = top + random() * Math.max(step - tall, 0)
@@ -118,7 +110,7 @@ function scatterFlowers(width: number, height: number, seed: number): Bloom[] {
         ...sway(),
       })
 
-      if (wide && random() < 0.12) {
+      if (random() < 0.12) {
         const small = Math.round(size * (0.7 + random() * 0.15))
         // Next to the flower, towards the inside of the margin, a little lower.
         const inward = side === 'left' ? 1 : -1
@@ -142,7 +134,7 @@ function scatterFlowers(width: number, height: number, seed: number): Bloom[] {
   return blooms
 }
 
-/** The page parts a flower inside the column must never cover: text, cards, images, buttons. */
+/** The page parts a flower or a resting butterfly must never cover: text, cards, images, buttons. */
 const OBSTACLES =
   '#main :is(h1, h2, h3, h4, p, ul, img, article, a, button, span), #main .rounded-2xl, footer p'
 
@@ -158,17 +150,10 @@ const grow = (box: Box, by: number): Box => ({
   bottom: box.bottom + by,
 })
 
-/**
- * Scatters smaller flowers inside the page column too, but only into the empty gaps: between
- * the sections, under the level descriptions, next to a lonely card. It measures where the text,
- * cards, images and buttons are, and tries random spots until enough of them are free.
- */
-function scatterInside(layer: HTMLElement, seed: number, edge: Bloom[]): Bloom[] {
-  const width = layer.clientWidth
-  const height = layer.clientHeight
-  if (!width || !height) return []
+/** Where the text, cards, images and buttons are, in the layer's pixels (with a little room). */
+function measureObstacles(layer: HTMLElement): Box[] {
   const origin = layer.getBoundingClientRect()
-  const taken = [...document.querySelectorAll(OBSTACLES)]
+  return [...document.querySelectorAll(OBSTACLES)]
     .map((element) => {
       const rect = element.getBoundingClientRect()
       return grow(
@@ -182,10 +167,21 @@ function scatterInside(layer: HTMLElement, seed: number, edge: Bloom[]): Bloom[]
       )
     })
     .filter((box) => box.right > box.left && box.bottom > box.top)
+}
 
+/**
+ * Scatters smaller flowers inside the page column too, but only into the empty gaps: between
+ * the sections, under the level descriptions, next to a lonely card. It measures where the text,
+ * cards, images and buttons are, and tries random spots until enough of them are free.
+ */
+function scatterInside(layer: HTMLElement, seed: number, edge: Bloom[], taken: Box[]): Bloom[] {
+  const width = layer.clientWidth
+  const height = layer.clientHeight
+  if (!width || !height) return []
   const random = seededRandom(seed ^ 0x27d4eb2d)
   const gutter = Math.max(gutterOf(width), 8)
-  const wanted = Math.round(height / (gutter >= 90 ? 420 : 700))
+  // Phones have no edge flowers, so a few more grow inside.
+  const wanted = Math.round(height / (isNarrow(width) ? 450 : 420))
   const placed: Box[] = []
   const blooms: Bloom[] = []
   const recent = recentKinds()
@@ -219,26 +215,43 @@ function scatterInside(layer: HTMLElement, seed: number, edge: Bloom[]): Bloom[]
   return blooms
 }
 
-/** A spot for a resting butterfly (as percentages of the field), in a margin at height y (px). */
-function restingSpot(random: () => number, width: number, height: number, y: number): Spot {
-  const side = random() < 0.5 ? 'left' : 'right'
-  const narrow = gutterOf(width) < 90
-  // On narrow screens it clings to the very edge, mostly visible.
-  const x = narrow
-    ? side === 'left'
-      ? BUTTERFLY_SIZE * 0.3
-      : width - BUTTERFLY_SIZE * 0.3
-    : marginX(random, width, BUTTERFLY_SIZE, side) + BUTTERFLY_SIZE / 2
-  return {
-    left: (x / width) * 100,
-    top: (y / height) * 100,
-    rotate: Math.round(random() * 70 - 35),
+const toSpot = (random: () => number, x: number, y: number, width: number, height: number) => ({
+  left: (x / width) * 100,
+  top: (y / height) * 100,
+  rotate: Math.round(random() * 70 - 35),
+})
+
+/**
+ * The centre (px) of a free spot for a butterfly between the heights y0 and y1: nothing of the
+ * page under it, and not on another butterfly or flower. Null if there is no room.
+ */
+function gapSpot(
+  random: () => number,
+  width: number,
+  y0: number,
+  y1: number,
+  avoid: Box[],
+): { x: number; y: number } | null {
+  const half = BUTTERFLY_SIZE / 2
+  for (let attempt = 0; attempt < 150; attempt++) {
+    const x = half + 4 + random() * Math.max(width - BUTTERFLY_SIZE - 8, 1)
+    const y = y0 + random() * Math.max(y1 - y0, 1)
+    const box = { left: x - half, top: y - half, right: x + half, bottom: y + half }
+    if (!avoid.some((other) => overlaps(box, other))) return { x, y }
   }
+  return null
 }
 
-/** One resting butterfly of each picture: the first two near the top, so they are seen right away. */
+/** A spot for a resting butterfly in a margin at height y (px), as percentages of the field. */
+function restingSpot(random: () => number, width: number, height: number, y: number): Spot {
+  const side = random() < 0.5 ? 'left' : 'right'
+  const x = marginX(random, width, BUTTERFLY_SIZE, side) + BUTTERFLY_SIZE / 2
+  return toSpot(random, x, y, width, height)
+}
+
+/** Wide screens: one resting butterfly of each picture in the margins, the first two near the top. */
 function placeButterflies(width: number, height: number, seed: number): Resting[] {
-  if (!width || !height) return []
+  if (!width || !height || isNarrow(width)) return []
   const random = seededRandom(seed ^ 0x5bd1e995)
   return BUTTERFLIES.map((src, id) => {
     const y = id < 2 ? 140 + random() * 420 : 200 + random() * Math.max(height - 400, 1)
@@ -246,9 +259,51 @@ function placeButterflies(width: number, height: number, seed: number): Resting[
   })
 }
 
+/** Phones: a few butterflies (different pictures) in empty gaps of the page, the first near the top. */
+function placeButterfliesInGaps(
+  layer: HTMLElement,
+  seed: number,
+  taken: Box[],
+  flowers: Bloom[],
+): Resting[] {
+  const width = layer.clientWidth
+  const height = layer.clientHeight
+  const random = seededRandom(seed ^ 0x5bd1e995)
+  const avoid = [
+    ...taken,
+    ...flowers.map((bloom) =>
+      grow(
+        {
+          left: bloom.x,
+          top: bloom.y,
+          right: bloom.x + bloom.size,
+          bottom: bloom.y + (isTall(bloom.kind) ? bloom.size * TALL_RATIO : bloom.size),
+        },
+        10,
+      ),
+    ),
+  ]
+  const pictures = [...BUTTERFLIES].sort(() => random() - 0.5).slice(0, PHONE_BUTTERFLIES)
+  const resting: Resting[] = []
+  pictures.forEach((src, id) => {
+    const [y0, y1] = id === 0 ? [90, 900] : [300, height - 120]
+    const free = gapSpot(random, width, y0, y1, avoid)
+    if (!free) return
+    avoid.push(grow({ left: free.x, top: free.y, right: free.x, bottom: free.y }, 60))
+    resting.push({
+      id,
+      src,
+      size: BUTTERFLY_SIZE,
+      start: toSpot(random, free.x, free.y, width, height),
+    })
+  })
+  return resting
+}
+
 /**
- * The garden around the page: flowers in the margins (they disappear when clicked and grow back) and
- * butterflies resting in the margins (they fly off to a new spot when clicked).
+ * The garden around the page: flowers (they disappear when clicked and grow back) and resting
+ * butterflies (they fly off to a new spot when clicked). On wide screens they live in the side
+ * margins and in empty gaps; on phones only in the empty gaps, so they never cover anything.
  */
 export function FlowerField() {
   const ref = useRef<HTMLDivElement>(null)
@@ -271,19 +326,28 @@ export function FlowerField() {
     return () => observer.disconnect()
   }, [])
 
+  const narrow = isNarrow(size.width)
   const edgeBlooms = useMemo(() => scatterFlowers(size.width, size.height, seed), [size, seed])
-  const butterflies = useMemo(() => placeButterflies(size.width, size.height, seed), [size, seed])
+  const marginButterflies = useMemo(
+    () => placeButterflies(size.width, size.height, seed),
+    [size, seed],
+  )
 
-  // The inner flowers need the laid-out page (where the text and the cards are), so they are
-  // placed after it has rendered, and again whenever the page size really changes.
+  // The inner flowers (and the butterflies on phones) need the laid-out page (where the text and
+  // the cards are), so they are placed after it has rendered, and again when its size really changes.
   const [innerBlooms, setInnerBlooms] = useState<Bloom[]>([])
+  const [gapButterflies, setGapButterflies] = useState<Resting[]>([])
   useEffect(() => {
     const layer = ref.current
     if (!layer || !size.width || !size.height) return
-    setInnerBlooms(scatterInside(layer, seed, edgeBlooms))
+    const taken = measureObstacles(layer)
+    const inner = scatterInside(layer, seed, edgeBlooms, taken)
+    setInnerBlooms(inner)
+    setGapButterflies(isNarrow(size.width) ? placeButterfliesInGaps(layer, seed, taken, inner) : [])
   }, [size.width, size.height, seed, edgeBlooms])
 
   const blooms = [...edgeBlooms, ...innerBlooms]
+  const butterflies = narrow ? gapButterflies : marginButterflies
 
   /** A new landing spot somewhere in the part of the page that is on screen now. */
   const nextSpot = (): Spot => {
@@ -291,8 +355,16 @@ export function FlowerField() {
     const width = layer?.clientWidth ?? size.width
     const height = layer?.clientHeight ?? size.height
     const top = layer ? -layer.getBoundingClientRect().top : window.scrollY
-    const y = top + 100 + Math.random() * Math.max(window.innerHeight - 200, 1)
-    return restingSpot(Math.random, width, height, Math.min(Math.max(y, 80), height - 80))
+    const y0 = Math.max(top + 100, 80)
+    const y1 = Math.min(top + window.innerHeight - 100, height - 80)
+    if (layer && isNarrow(width)) {
+      const free = gapSpot(Math.random, width, y0, y1, measureObstacles(layer))
+      if (free) return toSpot(Math.random, free.x, free.y, width, height)
+    }
+    const y = y0 + Math.random() * Math.max(y1 - y0, 1)
+    return isNarrow(width)
+      ? toSpot(Math.random, width / 2, y, width, height)
+      : restingSpot(Math.random, width, height, y)
   }
 
   return (
