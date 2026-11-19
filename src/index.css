@@ -96,9 +96,21 @@
    * Dark theme: the same turquoise sky at night, with pink, lavender and gold highlights.
    * index.html sets data-theme before the first paint: the visitor's saved choice,
    * or the system setting when there is none.
+   *
+   * Phone browsers with a dark mode of their own (Chrome's auto dark theme, Samsung Internet)
+   * repaint pages that don't seem to have one, which made the gradient name unreadable. This
+   * page has both themes, so it says so three ways: the color-scheme meta tag in index.html,
+   * "only" in color-scheme (don't repaint this), and a prefers-color-scheme rule, which is what
+   * Samsung Internet looks for (it only matters when the theme script didn't run).
    */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      color-scheme: dark only;
+    }
+  }
+
   :root[data-theme="dark"] {
-    color-scheme: dark;
+    color-scheme: dark only;
     --color-page: #0b2e36;
     --color-surface: #113c46;
     --color-ink: #f2fbfd;
@@ -114,7 +126,7 @@
   }
 
   :root[data-theme="light"] {
-    color-scheme: light;
+    color-scheme: light only;
   }
 
   html {
