@@ -1,8 +1,10 @@
 import frontEndLab from '../assets/projects/front-end-lab.webp'
+import jsonTabifier from '../assets/projects/json-tabifier.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
+import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
 import rikatas from '../assets/projects/rikatas.webp'
 
@@ -136,5 +138,35 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikaflix/',
     repo: 'https://github.com/mazsola739/rikaflix',
     image: rikaflix,
+  },
+  {
+    title: 'json-tabifier',
+    level: 3,
+    year: '2025',
+    description:
+      'An open-source npm package with over 35,000 downloads in the last year: a CLI that lines up the values of package.json and other JSON files in a neat column, without changing a single value. Zero dependencies, a typed API, a --check mode for CI and 33 tests on three operating systems; the project page has a live playground. Published in 2025, rebuilt as 2.0 in 2026.',
+    tags: [
+      'Node.js',
+      'JavaScript',
+      'CLI',
+      'npm',
+      'TypeScript types',
+      'node:test',
+      'GitHub Actions',
+    ],
+    live: 'https://mazsola739.github.io/json-tabifier/',
+    repo: 'https://github.com/mazsola739/json-tabifier',
+    image: jsonTabifier,
+  },
+  {
+    title: 'Rika Unicorn Theme',
+    level: 3,
+    year: '2026',
+    description:
+      'A VS Code extension with four colour themes (dark, light, sky blue and teal) and 71 file and folder icons: flowers, butterflies, stars and a unicorn for README files. Every colour was sampled from one picture of a unicorn, the code colours pass a WCAG contrast check, and one build script makes the themes, the icons, the previews and the showcase page.',
+    tags: ['VS Code extension', 'Color theme', 'Icon theme', 'JavaScript', 'SVG', 'WCAG'],
+    live: 'https://mazsola739.github.io/rika-unicorn-theme/',
+    repo: 'https://github.com/mazsola739/rika-unicorn-theme',
+    image: rikaUnicornTheme,
   },
 ]
