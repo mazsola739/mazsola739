@@ -181,6 +181,17 @@ export const projects: Project[] = [
     image: nodejsMentoring,
   },
   {
+    title: 'Next.js Blog',
+    level: 2,
+    year: '2023',
+    description:
+      'The home assignment of a junior front-end job application: a responsive blog built from a Figma design, with paginated posts from a mock API, detail pages, tags, reading time, an RSS feed and a light / dark theme. A static export, so it runs on GitHub Pages.',
+    tags: ['Next.js', 'React', 'TypeScript', 'SCSS modules', 'Static export'],
+    live: 'https://mazsola739.github.io/rika-nextjs-blog/',
+    repo: 'https://github.com/mazsola739/rika-nextjs-blog',
+    image: nextjsBlog,
+  },
+  {
     title: 'Maze Escape Solver',
     level: 2,
     year: '2024',
@@ -190,17 +201,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hacka/',
     repo: 'https://github.com/mazsola739/rika-hacka',
     image: mazeEscapeSolver,
-  },
-  {
-    title: 'Next.js Blog',
-    level: 2,
-    year: '2025',
-    description:
-      'The home assignment of a junior front-end job application: a responsive blog built from a Figma design, with paginated posts from a mock API, detail pages, tags, reading time, an RSS feed and a light / dark theme. A static export, so it runs on GitHub Pages.',
-    tags: ['Next.js', 'React', 'TypeScript', 'SCSS modules', 'Static export'],
-    live: 'https://mazsola739.github.io/rika-nextjs-blog/',
-    repo: 'https://github.com/mazsola739/rika-nextjs-blog',
-    image: nextjsBlog,
   },
   {
     title: 'Rikaflix',
