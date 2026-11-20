@@ -40,7 +40,10 @@ export type Project = {
   image?: string
 }
 
-/** The projects go from simple to complex, one level at a time: from noob to raisin. */
+/**
+ * The projects go from simple to complex, one level at a time: from noob to raisin. The page
+ * shows them the other way round, Raisin on top.
+ */
 export const levels: Level[] = [
   {
     id: 1,
@@ -71,7 +74,7 @@ export const levels: Level[] = [
   },
 ]
 
-/** Projects are added here one by one; within a level they show in this order. */
+/** Projects are added here one by one, oldest first; the page shows each level newest first. */
 export const projects: Project[] = [
   {
     title: 'Matchmaker',

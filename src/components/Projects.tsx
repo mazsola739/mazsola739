@@ -4,8 +4,9 @@ import { ProjectCard } from './ProjectCard.tsx'
 import { Section } from './Section.tsx'
 
 /**
- * Level colors, like the rainbow mane that ends in the golden horn: indigo, purple, raspberry,
- * gold. Each badge gets its own, and the line down to the next badge fades into the next one.
+ * Level colors from Noob up to Raisin, like the rainbow mane that ends in the golden horn:
+ * indigo, purple, raspberry, gold. Each badge gets its own, and the line down to the next badge
+ * fades into the next one.
  */
 const LEVEL_COLORS = [
   'var(--color-mane-1)',
@@ -15,6 +16,12 @@ const LEVEL_COLORS = [
 ]
 /** Text on the badge: white on the dark colors, dark on the gold. */
 const BADGE_TEXT = ['text-white', 'text-white', 'text-white', 'text-midnight']
+
+/**
+ * The page shows the newest work first: Raisin on top, the golden horn above the mane, then down
+ * the levels to Noob. `rank` is the level's place from Noob up; its color follows it.
+ */
+const shownLevels = levels.map((level, rank) => ({ level, rank })).reverse()
 
 /**
  * From md the levels form a timeline: the badges sit on a line that runs from level to level.
@@ -30,14 +37,16 @@ export function Projects() {
     <Section
       id="projects"
       title="Projects"
-      subtitle="From noob to raisin: my first small projects up to complex systems."
+      subtitle="From raisin back to noob: complex systems first, down to the small projects where it all started."
     >
       <ol className="grid gap-8 md:gap-12">
-        {levels.map((level, index) => {
-          const items = projects.filter((project) => project.level === level.id)
+        {shownLevels.map(({ level, rank }) => {
+          // Within a level, too, the newest project comes first.
+          const items = projects.filter((project) => project.level === level.id).reverse()
           const colors = {
-            '--level': LEVEL_COLORS[index % LEVEL_COLORS.length],
-            '--next': LEVEL_COLORS[(index + 1) % LEVEL_COLORS.length],
+            '--level': LEVEL_COLORS[rank % LEVEL_COLORS.length],
+            // The line runs down to the level below, one rank lower.
+            '--next': LEVEL_COLORS[(rank + LEVEL_COLORS.length - 1) % LEVEL_COLORS.length],
           } as CSSProperties
           return (
             <li
@@ -51,7 +60,7 @@ export function Projects() {
                 {/* From md: badge on the left, the text next to it; stays in view while scrolling. */}
                 <div className="md:sticky md:top-24 md:grid md:grid-cols-[2.5rem_1fr] md:items-start md:gap-x-3">
                   <span
-                    className={`inline-block w-10 rounded-full bg-(--level) py-0.5 text-center text-sm font-bold ${BADGE_TEXT[index % BADGE_TEXT.length]}`}
+                    className={`inline-block w-10 rounded-full bg-(--level) py-0.5 text-center text-sm font-bold ${BADGE_TEXT[rank % BADGE_TEXT.length]}`}
                   >
                     {String(level.id).padStart(2, '0')}
                   </span>
