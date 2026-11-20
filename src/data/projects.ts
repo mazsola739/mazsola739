@@ -12,6 +12,7 @@ import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
 import rikatas from '../assets/projects/rikatas.webp'
+import rikatrix from '../assets/projects/rikatrix.webp'
 import skillVisualizer from '../assets/projects/skill-visualizer.webp'
 
 export type Level = {
@@ -59,7 +60,7 @@ export const levels: Level[] = [
     title: 'Medior',
     tagline: 'It works on your machine too.',
     description:
-      'A complete app, a whole coding competition solved and visualised, and tools other people install: an npm package and a VS Code extension.',
+      'A complete app, a whole coding competition solved and visualised, and tools other people install: an npm package, a VS Code extension and a Windows wallpaper.',
   },
   {
     id: 4,
@@ -240,6 +241,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-unicorn-theme/',
     repo: 'https://github.com/mazsola739/rika-unicorn-theme',
     image: rikaUnicornTheme,
+  },
+  {
+    title: 'Rikatrix',
+    level: 3,
+    year: '2026',
+    description:
+      'An animated Windows wallpaper: Matrix rain in pink, lavender and ice blue, with glitter, smoke veils, four themes and a mouse spotlight. The original Matrix code was reportedly scanned from sushi cookbooks, so here the rain spells out real sushi words and recipe steps in katakana. It runs in Lively Wallpaper as one small file; a release workflow publishes the download, and the showcase page runs the wallpaper live, so you can try it before installing.',
+    tags: ['React', 'TypeScript', 'Canvas', 'Vite', 'Lively Wallpaper', 'GitHub Actions'],
+    live: 'https://mazsola739.github.io/rikatrix/',
+    repo: 'https://github.com/mazsola739/rikatrix',
+    image: rikatrix,
   },
   {
     title: 'CoderGames Solutions',
