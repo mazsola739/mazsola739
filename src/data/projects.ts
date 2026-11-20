@@ -39,6 +39,13 @@ export type Project = {
   repo?: string
   /** Screenshot: put it in src/assets/projects/ and import it here. */
   image?: string
+  /**
+   * The landscape card (from lg) shows only the middle part of the screenshot. When the
+   * interesting part is elsewhere, this moves the crop: a CSS object-position, e.g. 'right top'.
+   */
+  focus?: string
+  /** Zooms the landscape crop in around the focus point, e.g. 1.3 shows a smaller part, larger. */
+  zoom?: number
 }
 
 /**
@@ -82,18 +89,20 @@ export const projects: Project[] = [
     level: 1,
     year: '2020',
     description:
-      'My very first code, my own "Hello, world!": a love calculator, inspired by a game we played on paper at school. Type in two names, it counts the letters of I LOVE YOU in them and adds the neighbouring digits row by row until only a love percentage is left; a button tells you which letters are missing to reach 100%. First written on CodePen in 2020, renovated in 2026.',
+      'My very first code, my own "Hello, world!": a love calculator, inspired by a game we played on paper at school. Type in two names, it counts the letters of I LOVE YOU in them and adds the digits row by row until a love percentage is left. Written on CodePen in 2020, renovated in 2026.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     live: 'https://mazsola739.github.io/rika-hello-world/',
     repo: 'https://github.com/mazsola739/rika-hello-world',
     image: matchmaker,
+    focus: 'left top',
+    zoom: 1.3,
   },
   {
     title: 'Rika Ipsum',
     level: 1,
     year: '2021',
     description:
-      'A nonsense text generator with 13 flavours of ipsum, from Lorem, Superhero and Meow to Palindrome, Pirate and Meme Ipsum. It makes paragraphs, sentences, words or a set number of characters, with optional emojis and <p> tags, and every generator has its own link. One HTML file, no build, no dependencies; refreshed in 2026.',
+      'A nonsense text generator with 13 flavours of ipsum, from Lorem, Superhero and Meow to Palindrome, Pirate and Meme Ipsum. It makes paragraphs, sentences, words or characters, with optional emojis and <p> tags. One HTML file, no build, no dependencies; refreshed in 2026.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     live: 'https://mazsola739.github.io/rika-ipsum/',
     repo: 'https://github.com/mazsola739/rika-ipsum',
@@ -104,7 +113,7 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      'My Codewars homework from the Junior Front-End Online Program: 169 of 173 katas solved in JavaScript, many of them refactored, and a site to browse them. Search by kata name or by method (e.g. map), filter by kyu, open a kata to see the task and my solution, and see which methods I used the most. Codewars look, with a dark / light mode.',
+      'My Codewars homework from the Junior Front-End Online Program: 169 of 173 katas solved in JavaScript, and a site to browse them. Search by name or by method, filter by kyu, read the task and my solution, and see which methods I used the most.',
     tags: ['JavaScript', 'HTML', 'CSS', 'Codewars', 'highlight.js'],
     live: 'https://mazsola739.github.io/rikatas/',
     repo: 'https://github.com/mazsola739/rikatas',
@@ -115,18 +124,19 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS, SCSS and Bootstrap pages run as they were built for the course; the JavaScript tasks are rebuilt with React 19 and TypeScript, with unit tests. Renovated in 2026.',
+      'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS and Bootstrap pages run as they were built; the JavaScript tasks are rebuilt with React 19 and TypeScript, with tests.',
     tags: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript', 'React', 'TypeScript', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
     image: frontEndLab,
+    focus: 'left top',
   },
   {
     title: 'Rika Cheat Sheets',
     level: 1,
     year: '2021',
     description:
-      'My collection from my noob days: whatever I liked or finally understood went in here, starting with my favourite JavaScript snippets in 2021. In 2026 it grew into a site of its own, in English and Hungarian: 8 hand-drawn frontend cheat sheets with a Flexbox and Grid playground, 167 JavaScript snippets with search and favourites, a roadmap of 145 points to tick off and download, and 50 development principles, each with its own poster meme. Plain HTML, CSS and JavaScript, no build.',
+      'Whatever I liked or finally understood in my noob days went in here, from 2021 on. In 2026 it grew into a site of its own, in English and Hungarian: hand-drawn cheat sheets, 167 JavaScript snippets, a roadmap to tick off and 50 development principles with poster memes.',
     tags: ['HTML', 'CSS', 'JavaScript', 'SVG', 'localStorage'],
     live: 'https://mazsola739.github.io/rika-cheat-sheets/',
     repo: 'https://github.com/mazsola739/rika-cheat-sheets',
@@ -137,40 +147,44 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      "My first React app. I've always liked visual overviews, so I wondered: what if my knowledge could be seen like a tree and its branches? Before a job interview I was asked to put together a small hobby project of my own, and this is what came of it: paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. It opens with my skills from June 2021; renovated in 2026.",
+      "My first React app. I've always liked visual overviews, so I wondered: what if my knowledge could be seen like a tree and its branches? Paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. It opens with my skills from June 2021.",
     tags: ['React', 'JavaScript', 'Vite', 'PlantUML', 'Vitest'],
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
+    focus: '82% bottom',
+    zoom: 1.6,
   },
   {
     title: 'React Fundamentals',
     level: 2,
     year: '2021',
     description:
-      "My homework from a React Fundamentals course in autumn 2021: a courses app that grew week by week, from components and routing to Redux, thunks and tests. Log in as an admin to add, edit and delete courses, or as a student to browse and search. Rebuilt in 2026 with React 19, TypeScript and Redux Toolkit, with a backend of my own in place of the course's NestJS server: it runs on Bun, or right in the browser on GitHub Pages.",
+      'My homework from a React Fundamentals course in 2021: a courses app that grew week by week, from components and routing to Redux and tests. Rebuilt in 2026 with React 19 and Redux Toolkit, with a backend of my own that also runs in the browser.',
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'React Router', 'Tailwind CSS', 'Bun', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-react-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-react-fundamentals',
     image: reactFundamentals,
+    focus: '33% top',
   },
   {
     title: 'Angular Fundamentals',
     level: 2,
     year: '2021',
     description:
-      "My homework from an Angular Fundamentals course in 2021: a courses app with forms, routing, services and an NgRx store. I had a taste of Angular here, but I never worked with it after the course: we didn't become friends. The old code got lost, so in 2026 I wrote it again from the task sheets.",
+      "My homework from an Angular Fundamentals course in 2021: a courses app with forms, routing, services and an NgRx store. I never worked with Angular after it: we didn't become friends. The old code got lost, so in 2026 I wrote it again from the task sheets.",
     tags: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'Signals', 'SCSS', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
     image: angularFundamentals,
+    focus: 'left top',
   },
   {
     title: 'Project Ramp-up',
     level: 2,
     year: '2022',
     description:
-      'My ramp-up task before my first project as a junior developer: a browser for the posts, albums, photos, users and todos of the JSONPlaceholder API, with paging, detail pages and a side column on every page. Built in two weeks in February 2022 with React 17 and React Query; rebuilt in 2026 with React 19, TanStack Query 5 and Tailwind, the open TODOs finished and 21 tests added.',
+      'My ramp-up task before my first project as a junior developer, built in two weeks in 2022: a browser for the posts, albums, photos and todos of the JSONPlaceholder API. Rebuilt in 2026 with React 19, TanStack Query 5 and Tailwind, with tests.',
     tags: [
       'React',
       'TypeScript',
@@ -183,17 +197,19 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/project-rampup/',
     repo: 'https://github.com/mazsola739/project-rampup',
     image: projectRampup,
+    focus: 'left top',
   },
   {
     title: 'Node.js Mentoring',
     level: 2,
     year: '2023',
     description:
-      'My home tasks from a Node.js mentoring program in autumn 2023, seven modules from a REPL command and a process monitor to my own EventEmitter, streams, tests, a REST API on plain node:http and an Express checkout service. Renovated in 2026 with strict TypeScript and Bun: the unfinished database task is finished with SQLite, every module has tests, and the project page runs most of the code right in the browser.',
+      'My home tasks from a Node.js mentoring program in 2023: seven modules, from a REPL command and my own EventEmitter to streams, a REST API and an Express service. Renovated in 2026 with TypeScript, Bun, SQLite and tests; most of it runs right in the browser.',
     tags: ['Node.js', 'TypeScript', 'Express', 'REST API', 'Streams', 'SQLite', 'Bun'],
     live: 'https://mazsola739.github.io/rika-nodejs/',
     repo: 'https://github.com/mazsola739/rika-nodejs',
     image: nodejsMentoring,
+    focus: 'left top',
   },
   {
     title: 'Next.js Blog',
@@ -205,6 +221,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-nextjs-blog/',
     repo: 'https://github.com/mazsola739/rika-nextjs-blog',
     image: nextjsBlog,
+    focus: 'left top',
   },
   {
     title: 'Maze Escape Solver',
@@ -216,6 +233,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hacka/',
     repo: 'https://github.com/mazsola739/rika-hacka',
     image: mazeEscapeSolver,
+    focus: 'left top',
   },
   {
     title: 'Rikaflix',
@@ -227,13 +245,14 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikaflix/',
     repo: 'https://github.com/mazsola739/rikaflix',
     image: rikaflix,
+    focus: 'left top',
   },
   {
     title: 'json-tabifier',
     level: 3,
     year: '2025',
     description:
-      'An open-source npm package with over 35,000 downloads in the last year: a CLI that lines up the values of package.json and other JSON files in a neat column, without changing a single value. Zero dependencies, a typed API, a --check mode for CI and 33 tests on three operating systems; the project page has a live playground. Published in 2025, rebuilt as 2.0 in 2026.',
+      'An open-source npm package with over 35,000 downloads in the last year: a CLI that lines up the values of package.json and other JSON files in a neat column, without changing a value. Zero dependencies, a --check mode for CI and a live playground.',
     tags: [
       'Node.js',
       'JavaScript',
@@ -246,35 +265,39 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/json-tabifier/',
     repo: 'https://github.com/mazsola739/json-tabifier',
     image: jsonTabifier,
+    focus: 'left top',
   },
   {
     title: 'Rika Unicorn Theme',
     level: 3,
     year: '2026',
     description:
-      'A VS Code extension with four colour themes (dark, light, sky blue and teal) and 71 file and folder icons: flowers, butterflies, stars and a unicorn for README files. Every colour was sampled from one picture of a unicorn, the code colours pass a WCAG contrast check, and one build script makes the themes, the icons, the previews and the showcase page.',
+      'A VS Code extension with four colour themes and 71 file and folder icons: flowers, butterflies, stars and a unicorn for README files. Every colour was sampled from one picture of a unicorn, and the code colours pass a WCAG contrast check.',
     tags: ['VS Code extension', 'Color theme', 'Icon theme', 'JavaScript', 'SVG', 'WCAG'],
     live: 'https://mazsola739.github.io/rika-unicorn-theme/',
     repo: 'https://github.com/mazsola739/rika-unicorn-theme',
     image: rikaUnicornTheme,
+    focus: 'right top',
+    zoom: 1.25,
   },
   {
     title: 'Rikatrix',
     level: 3,
     year: '2026',
     description:
-      'An animated Windows wallpaper: Matrix rain in pink, lavender and ice blue, with glitter, smoke veils, four themes and a mouse spotlight. The original Matrix code was reportedly scanned from sushi cookbooks, so here the rain spells out real sushi words and recipe steps in katakana. It runs in Lively Wallpaper as one small file; a release workflow publishes the download, and the showcase page runs the wallpaper live, with a full-screen demo, so you can try it before installing.',
+      'An animated Windows wallpaper for Lively: Matrix rain in pink, lavender and ice blue, with glitter, four themes and a mouse spotlight. The original Matrix code was reportedly scanned from sushi cookbooks, so here the rain spells real sushi words in katakana.',
     tags: ['React', 'TypeScript', 'Canvas', 'Vite', 'Lively Wallpaper', 'GitHub Actions'],
     live: 'https://mazsola739.github.io/rikatrix/',
     repo: 'https://github.com/mazsola739/rikatrix',
     image: rikatrix,
+    focus: 'left top',
   },
   {
     title: 'CoderGames Solutions',
     level: 3,
     year: '2026',
     description:
-      'Every published task of CoderGames, the week-long coding competition of Deutsche Telekom IT Solutions, from 2020 to 2026: 37 tasks in 8 editions, from ciphers and graphs to dynamic programming. Each has a write-up in my own words, a standalone solution, an automatic check against the official answer and an interactive visualisation, and a playground lets you solve it yourself on the real input, right in the browser. Along the way I found five mistakes in the official material, such as wrong official answers for 93 of 103 maps in 2022. The site is in English and Hungarian.',
+      "Every published task of CoderGames, Deutsche Telekom IT Solutions' coding competition, from 2020 to 2026: 37 tasks, each with a write-up, a checked solution, a visualisation and a playground. Along the way I found five mistakes in the official material.",
     tags: [
       'TypeScript',
       'Node.js',
@@ -287,13 +310,14 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-codergames/',
     repo: 'https://github.com/mazsola739/rika-codergames',
     image: codergames,
+    focus: 'left top',
   },
   {
     title: "Rika's One Night Ultimate Game",
     level: 4,
     year: '2022–2026',
     description:
-      'A web version of One Night Ultimate Werewolf, my favourite secret identity board game. Up to 12 players meet in a lobby, the server runs the night in the official wake order while a narrator reads it aloud in English or Hungarian, then the table talks and votes, and the verdict shows who won and why; robots fill the empty seats. I started it alone in 2022 with React and Express, and the whole game logic worked before AI came along; GitHub Copilot helped me refactor it in 2025, and with Claude in 2026 I rebuilt it with a Rust server, Tailwind, Playwright tests and a self-hosted deploy. The code is private: the showcase plays a scripted round, tells the story and shows the developer tools.',
+      'My favourite board game, One Night Ultimate Werewolf, on the web: up to 12 players, a narrator in English or Hungarian, robots on the empty seats. I started it alone in 2022, before AI came along; in 2026 I rebuilt it with Claude and a Rust server.',
     tags: [
       'Rust',
       'Axum',
@@ -306,5 +330,6 @@ export const projects: Project[] = [
     ],
     live: 'https://mazsola739.github.io/rika-onug-showcase/',
     image: rikaOnug,
+    focus: '15% top',
   },
 ]

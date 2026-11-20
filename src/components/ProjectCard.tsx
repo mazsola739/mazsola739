@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { type CSSProperties, useEffect, useRef } from 'react'
 import type { Project } from '../data/projects.ts'
 import { CardBlooms } from './garden/CardBlooms.tsx'
 import { GitHubIcon, GlobeIcon } from './icons.tsx'
@@ -49,21 +49,33 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     // On phones the cards sit in a swipeable row (see Projects): fixed width, snapping into place.
     <div className="relative flex w-[min(85%,22rem)] shrink-0 snap-start md:w-auto">
-      <article className="relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-[scale,border-color,box-shadow] duration-200 hover:border-accent/60 hover:shadow-lg hover:shadow-ink/10 active:scale-[0.98] motion-reduce:transition-none lg:grid lg:h-80 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)_auto] lg:active:scale-[0.99]">
+      <article className="relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-[scale,border-color,box-shadow] duration-200 hover:border-accent/60 hover:shadow-lg hover:shadow-ink/10 active:scale-[0.98] motion-reduce:transition-none lg:grid lg:h-88 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)_auto] lg:active:scale-[0.99]">
         {project.image && (
-          <img
-            className="aspect-16/10 w-full border-b border-line object-cover object-top lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:aspect-auto lg:h-full lg:border-r lg:border-b-0 lg:object-left-top"
-            src={project.image}
-            alt={`${project.title} – screenshot`}
-            loading="lazy"
-          />
+          // The frame keeps a zoomed-in screenshot inside its half of the card.
+          <div className="overflow-hidden border-b border-line lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:border-r lg:border-b-0">
+            <img
+              className="aspect-16/10 w-full object-cover object-top lg:aspect-auto lg:h-full lg:[scale:var(--zoom,1)]"
+              // Landscape cards crop the sides of the screenshot: from the middle, or around the
+              // project's own focus point, zoomed in when the project asks for it.
+              style={
+                {
+                  objectPosition: project.focus,
+                  transformOrigin: project.focus,
+                  '--zoom': project.zoom,
+                } as CSSProperties
+              }
+              src={project.image}
+              alt={`${project.title} – screenshot`}
+              loading="lazy"
+            />
+          </div>
         )}
         <div className="flex flex-col gap-2.5 px-4 pt-4 sm:px-5 sm:pt-5 lg:col-start-2 lg:row-start-1 lg:min-h-0">
           <p className="text-xs font-semibold text-muted">{project.year}</p>
           <h4 className="text-lg leading-tight font-bold tracking-tight">{project.title}</h4>
           <p
             ref={description}
-            className="text-[0.95rem] text-muted lg:line-clamp-(--lines) lg:min-h-0 lg:flex-1"
+            className="text-[0.95rem] text-muted lg:line-clamp-(--lines) lg:min-h-0 lg:flex-1 lg:text-sm lg:leading-normal"
           >
             {project.description}
           </p>
