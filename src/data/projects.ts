@@ -80,7 +80,7 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      'A nonsense text generator with 13 flavours of ipsum, from Lorem, Marvel and Meow to Palindrome, Pirate and Meeting Ipsum. It makes paragraphs, sentences, words or a set number of characters, with optional emojis and <p> tags, and every generator has its own link. One HTML file, no build, no dependencies; refreshed in 2026.',
+      'A nonsense text generator with 13 flavours of ipsum, from Lorem, Superhero and Meow to Palindrome, Pirate and Meme Ipsum. It makes paragraphs, sentences, words or a set number of characters, with optional emojis and <p> tags, and every generator has its own link. One HTML file, no build, no dependencies; refreshed in 2026.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     live: 'https://mazsola739.github.io/rika-ipsum/',
     repo: 'https://github.com/mazsola739/rika-ipsum',
