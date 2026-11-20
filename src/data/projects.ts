@@ -9,6 +9,7 @@ import nodejsMentoring from '../assets/projects/nodejs-mentoring.webp'
 import projectRampup from '../assets/projects/project-rampup.webp'
 import reactFundamentals from '../assets/projects/react-fundamentals.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
+import rikaOnug from '../assets/projects/rika-onug.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
 import rikatas from '../assets/projects/rikatas.webp'
@@ -271,5 +272,24 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-codergames/',
     repo: 'https://github.com/mazsola739/rika-codergames',
     image: codergames,
+  },
+  {
+    title: "Rika's One Night Ultimate Game",
+    level: 4,
+    year: '2022–2026',
+    description:
+      'A web version of One Night Ultimate Werewolf, my favourite secret identity board game. Up to 12 players meet in a lobby, the server runs the night in the official wake order while a narrator reads it aloud in English or Hungarian, then the table talks and votes, and the verdict shows who won and why; robots fill the empty seats. I started it alone in 2022 with React and Express, and the whole game logic worked before AI came along; GitHub Copilot helped me refactor it in 2025, and with Claude in 2026 I rebuilt it with a Rust server, Tailwind, Playwright tests and a self-hosted deploy. The code is private: the showcase plays a scripted round, tells the story and shows the developer tools.',
+    tags: [
+      'Rust',
+      'Axum',
+      'WebSocket',
+      'React',
+      'TypeScript',
+      'MobX',
+      'Tailwind CSS',
+      'Playwright',
+    ],
+    live: 'https://mazsola739.github.io/rika-onug-showcase/',
+    image: rikaOnug,
   },
 ]
