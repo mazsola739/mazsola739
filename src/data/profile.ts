@@ -17,7 +17,8 @@ export const profile: Profile = {
   name: 'Erika Rostás',
   nickname: 'Rika',
   role: 'Full-stack Developer',
-  intro: 'A short introduction goes here: who I am, what I work on, and what I am most proud of.',
+  intro:
+    "I've been writing code since 2020, from a love calculator on CodePen to full-stack apps. Since 2025 I've been sharpening my skills with AI, with GitHub Copilot and Claude as my everyday pair programmers.",
   codingSince: 2020,
   cv: 'https://mazsola739.github.io/rika-cv/',
   links: [

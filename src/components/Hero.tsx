@@ -1,11 +1,11 @@
-import unicorn from '../assets/unicorn.webp'
+import portrait from '../assets/portrait.webp'
 import { isExternal, profile } from '../data/profile.ts'
 import { button } from './button.ts'
 import { LinkIcon } from './icons.tsx'
 
 /**
- * On phones everything is centred, with the unicorn on top; from md up the text is on the left
- * and the unicorn on the right, looking towards the name.
+ * On phones everything is centred, with my photo on top; from md up the text is on the left
+ * and the photo on the right.
  */
 export function Hero() {
   return (
@@ -53,14 +53,17 @@ export function Hero() {
         </div>
       </div>
 
-      {/* The unicorn in the style of the "You are sweet." card, looking towards the name. */}
-      <img
-        className="order-first mb-5 w-44 sm:w-52 md:order-none md:mb-0 md:w-[clamp(12rem,26vw,19rem)] md:self-end md:pb-6"
-        src={unicorn}
-        alt=""
-        width={741}
-        height={900}
-      />
+      {/* My photo in a round frame of the rainbow mane. The bottom margin from md matches the
+          text column's bottom padding, so the photo is centred on the text. */}
+      <div className="order-first mb-6 rounded-full bg-mane p-1.5 shadow-xl shadow-ink/15 md:order-none md:mb-[clamp(3rem,8vw,5rem)]">
+        <img
+          className="block aspect-square w-40 rounded-full object-cover sm:w-48 md:w-[clamp(12rem,24vw,17rem)]"
+          src={portrait}
+          alt="Erika Rostás"
+          width={640}
+          height={640}
+        />
+      </div>
     </section>
   )
 }
