@@ -166,7 +166,7 @@ export const projects: Project[] = [
     image: projectRampup,
   },
   {
-    title: 'Node.js Mentoring Program',
+    title: 'Node.js Mentoring',
     level: 2,
     year: '2023',
     description:
