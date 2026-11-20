@@ -3,6 +3,7 @@ import jsonTabifier from '../assets/projects/json-tabifier.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
+import nodejsMentoring from '../assets/projects/nodejs-mentoring.webp'
 import projectRampup from '../assets/projects/project-rampup.webp'
 import reactFundamentals from '../assets/projects/react-fundamentals.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
@@ -150,6 +151,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/project-rampup/',
     repo: 'https://github.com/mazsola739/project-rampup',
     image: projectRampup,
+  },
+  {
+    title: 'Node.js Mentoring Program',
+    level: 2,
+    year: '2023',
+    description:
+      'My home tasks from the EPAM Node.js Global Mentoring Program in autumn 2023, seven modules from a REPL command and a process monitor to my own EventEmitter, streams, tests, a REST API on plain node:http and an Express checkout service. Renovated in 2026 with strict TypeScript and Bun: the unfinished database task is finished with SQLite, every module has tests, and the project page runs most of the code right in the browser.',
+    tags: ['Node.js', 'TypeScript', 'Express', 'REST API', 'Streams', 'SQLite', 'Bun'],
+    live: 'https://mazsola739.github.io/rika-nodejs/',
+    repo: 'https://github.com/mazsola739/rika-nodejs',
+    image: nodejsMentoring,
   },
   {
     title: 'Maze Escape Solver',
