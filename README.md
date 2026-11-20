@@ -8,13 +8,13 @@ Since 2025 I've been sharpening my skills with AI, with GitHub Copilot and Claud
 
 ## Highlights
 
-| Project                                                                  | What it is                                                                         |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| [json-tabifier](https://github.com/mazsola739/json-tabifier)             | An npm package and CLI that lines up JSON values; 35,000+ downloads in a year       |
-| [Rika Unicorn Theme](https://github.com/mazsola739/rika-unicorn-theme)   | A VS Code extension: four colour themes and 71 file icons                          |
-| [Rikaflix](https://github.com/mazsola739/rikaflix)                       | A movie and TV show browser with React, Redux Toolkit and RTK Query               |
-| [Project Ramp-up](https://github.com/mazsola739/project-rampup)          | My EPAM ramp-up task, rebuilt with React 19, TanStack Query and Tailwind CSS      |
-| [Maze Escape Solver](https://github.com/mazsola739/rika-hacka)           | A hackathon entry: A* search through a 17×17 XML maze, with an interactive replay |
+| Project                                                                | What it is                                                                        |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [json-tabifier](https://github.com/mazsola739/json-tabifier)           | An npm package and CLI that lines up JSON values; 35,000+ downloads in a year     |
+| [Rika Unicorn Theme](https://github.com/mazsola739/rika-unicorn-theme) | A VS Code extension: four colour themes and 71 file icons                         |
+| [Rikaflix](https://github.com/mazsola739/rikaflix)                     | A movie and TV show browser with React, Redux Toolkit and RTK Query               |
+| [Project Ramp-up](https://github.com/mazsola739/project-rampup)        | My EPAM ramp-up task, rebuilt with React 19, TanStack Query and Tailwind CSS      |
+| [Maze Escape Solver](https://github.com/mazsola739/rika-hacka)         | A hackathon entry: A* search through a 17×17 XML maze, with an interactive replay |
 
 Every project, from my first one to the newest, is on the [portfolio](https://mazsola739.github.io/mazsola739/).
 
