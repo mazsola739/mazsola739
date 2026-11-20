@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { type CSSProperties, useState } from 'react'
 import { levels, projects } from '../data/projects.ts'
 import { ProjectCard } from './ProjectCard.tsx'
 import { Section } from './Section.tsx'
@@ -17,11 +17,52 @@ const LEVEL_COLORS = [
 /** Text on the badge: white on the dark colors, dark on the gold. */
 const BADGE_TEXT = ['text-white', 'text-white', 'text-white', 'text-midnight']
 
+/** `rank` is the level's place from Noob up; its color follows it. */
+const rankedLevels = levels.map((level, rank) => ({ level, rank }))
+
 /**
- * The page shows the newest work first: Raisin on top, the golden horn above the mane, then down
- * the levels to Noob. `rank` is the level's place from Noob up; its color follows it.
+ * The visitor can read the levels either way. By default the newest work comes first: Raisin on
+ * top, the golden horn above the mane, then down to Noob, and in each level the newest project
+ * first. The other way starts with my very first code and grows up to Raisin.
  */
-const shownLevels = levels.map((level, rank) => ({ level, rank })).reverse()
+type Order = 'raisin-first' | 'noob-first'
+
+const ORDERS: { value: Order; label: string; spoken: string; subtitle: string }[] = [
+  {
+    value: 'raisin-first',
+    label: 'Raisin → Noob',
+    spoken: 'Raisin to noob, newest first',
+    subtitle:
+      'From raisin back to noob: complex systems first, down to the small projects where it all started.',
+  },
+  {
+    value: 'noob-first',
+    label: 'Noob → Raisin',
+    spoken: 'Noob to raisin, oldest first',
+    subtitle: 'From noob to raisin: my first small projects up to complex systems.',
+  },
+]
+
+/** Two pills next to the section title: which way the levels run. */
+function OrderSwitch({ order, onChange }: { order: Order; onChange: (order: Order) => void }) {
+  return (
+    <fieldset className="inline-flex shrink-0 rounded-full border border-line bg-surface p-1 text-sm font-semibold">
+      <legend className="sr-only">Order of the projects</legend>
+      {ORDERS.map((option) => (
+        <button
+          key={option.value}
+          type="button"
+          aria-pressed={order === option.value}
+          aria-label={option.spoken}
+          className="rounded-full px-3.5 py-1.5 whitespace-nowrap text-muted transition-colors hover:text-ink aria-pressed:bg-ink aria-pressed:text-surface"
+          onClick={() => onChange(option.value)}
+        >
+          {option.label}
+        </button>
+      ))}
+    </fieldset>
+  )
+}
 
 /**
  * From md the levels form a timeline: the badges sit on a line that runs from level to level.
@@ -33,20 +74,30 @@ const timeline =
   'md:before:absolute md:before:top-3 md:before:left-[calc(1.25rem-1px)] md:before:h-[calc(100%+3rem)] md:before:w-0.5 md:before:rounded-full md:before:bg-linear-to-b md:before:from-(--level) md:before:to-(--next) md:before:opacity-70 md:last:before:hidden'
 
 export function Projects() {
+  // Every visit starts with the newest work; the switch only turns it round for this visit.
+  const [order, setOrder] = useState<Order>('raisin-first')
+
+  const raisinFirst = order === 'raisin-first'
+  const shownLevels = raisinFirst ? [...rankedLevels].reverse() : rankedLevels
+  // The line under a badge runs to the next level shown: one rank lower or one rank higher.
+  const step = raisinFirst ? -1 : 1
+  const subtitle = ORDERS.find((option) => option.value === order)?.subtitle ?? ''
+
   return (
     <Section
       id="projects"
       title="Projects"
-      subtitle="From raisin back to noob: complex systems first, down to the small projects where it all started."
+      subtitle={subtitle}
+      actions={<OrderSwitch order={order} onChange={setOrder} />}
     >
       <ol className="grid gap-8 md:gap-12">
         {shownLevels.map(({ level, rank }) => {
-          // Within a level, too, the newest project comes first.
-          const items = projects.filter((project) => project.level === level.id).reverse()
+          // The data lists the projects oldest first; newest first, they are turned round.
+          const inLevel = projects.filter((project) => project.level === level.id)
+          const items = raisinFirst ? inLevel.reverse() : inLevel
           const colors = {
             '--level': LEVEL_COLORS[rank % LEVEL_COLORS.length],
-            // The line runs down to the level below, one rank lower.
-            '--next': LEVEL_COLORS[(rank + LEVEL_COLORS.length - 1) % LEVEL_COLORS.length],
+            '--next': LEVEL_COLORS[(rank + step + LEVEL_COLORS.length) % LEVEL_COLORS.length],
           } as CSSProperties
           return (
             <li
