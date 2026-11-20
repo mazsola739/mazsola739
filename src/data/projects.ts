@@ -2,6 +2,25 @@ import angularFundamentals from '../assets/projects/angular-fundamentals.webp'
 import codergames from '../assets/projects/codergames.webp'
 import frontEndLab from '../assets/projects/front-end-lab.webp'
 import jsonTabifier from '../assets/projects/json-tabifier.webp'
+import angularFundamentalsLandscape from '../assets/projects/landscape/angular-fundamentals.webp'
+import codergamesLandscape from '../assets/projects/landscape/codergames.webp'
+import frontEndLabLandscape from '../assets/projects/landscape/front-end-lab.webp'
+import jsonTabifierLandscape from '../assets/projects/landscape/json-tabifier.webp'
+import matchmakerLandscape from '../assets/projects/landscape/matchmaker.webp'
+import mazeEscapeSolverLandscape from '../assets/projects/landscape/maze-escape-solver.webp'
+import nextjsBlogLandscape from '../assets/projects/landscape/nextjs-blog.webp'
+import nodejsMentoringLandscape from '../assets/projects/landscape/nodejs-mentoring.webp'
+import projectRampupLandscape from '../assets/projects/landscape/project-rampup.webp'
+import reactFundamentalsLandscape from '../assets/projects/landscape/react-fundamentals.webp'
+import rikaCheatSheetsLandscape from '../assets/projects/landscape/rika-cheat-sheets.webp'
+import rikaDataRefinementLandscape from '../assets/projects/landscape/rika-data-refinement.webp'
+import rikaIpsumLandscape from '../assets/projects/landscape/rika-ipsum.webp'
+import rikaOnugLandscape from '../assets/projects/landscape/rika-onug.webp'
+import rikaUnicornThemeLandscape from '../assets/projects/landscape/rika-unicorn-theme.webp'
+import rikaflixLandscape from '../assets/projects/landscape/rikaflix.webp'
+import rikatasLandscape from '../assets/projects/landscape/rikatas.webp'
+import rikatrixLandscape from '../assets/projects/landscape/rikatrix.webp'
+import skillVisualizerLandscape from '../assets/projects/landscape/skill-visualizer.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
@@ -9,6 +28,7 @@ import nodejsMentoring from '../assets/projects/nodejs-mentoring.webp'
 import projectRampup from '../assets/projects/project-rampup.webp'
 import reactFundamentals from '../assets/projects/react-fundamentals.webp'
 import rikaCheatSheets from '../assets/projects/rika-cheat-sheets.webp'
+import rikaDataRefinement from '../assets/projects/rika-data-refinement.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaOnug from '../assets/projects/rika-onug.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
@@ -40,12 +60,11 @@ export type Project = {
   /** Screenshot: put it in src/assets/projects/ and import it here. */
   image?: string
   /**
-   * The landscape card (from lg) shows only the middle part of the screenshot. When the
-   * interesting part is elsewhere, this moves the crop: a CSS object-position, e.g. 'right top'.
+   * Screenshot for the landscape card (from lg): the part of the live page that matters, in the
+   * card's shape (367 x 350, saved at 2x as 734 x 700) in src/assets/projects/landscape/.
+   * Without it, the landscape card shows the middle of `image`.
    */
-  focus?: string
-  /** Zooms the landscape crop in around the focus point, e.g. 1.3 shows a smaller part, larger. */
-  zoom?: number
+  landscape?: string
 }
 
 /**
@@ -72,7 +91,7 @@ export const levels: Level[] = [
     title: 'Medior',
     tagline: 'It works on your machine too.',
     description:
-      'A complete app, a whole coding competition solved and visualised, and tools other people install: an npm package, a VS Code extension and a Windows wallpaper.',
+      'A complete app, a whole coding competition solved and visualised, tools other people install (an npm package, a VS Code extension and a Windows wallpaper) and a Severance fan toy.',
   },
   {
     id: 4,
@@ -94,8 +113,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hello-world/',
     repo: 'https://github.com/mazsola739/rika-hello-world',
     image: matchmaker,
-    focus: 'left top',
-    zoom: 1.3,
+    landscape: matchmakerLandscape,
   },
   {
     title: 'Rika Ipsum',
@@ -107,6 +125,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-ipsum/',
     repo: 'https://github.com/mazsola739/rika-ipsum',
     image: rikaIpsum,
+    landscape: rikaIpsumLandscape,
   },
   {
     title: 'Rikatas',
@@ -118,6 +137,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatas/',
     repo: 'https://github.com/mazsola739/rikatas',
     image: rikatas,
+    landscape: rikatasLandscape,
   },
   {
     title: 'Front-end Lab',
@@ -129,7 +149,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
     image: frontEndLab,
-    focus: 'left top',
+    landscape: frontEndLabLandscape,
   },
   {
     title: 'Rika Cheat Sheets',
@@ -141,6 +161,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-cheat-sheets/',
     repo: 'https://github.com/mazsola739/rika-cheat-sheets',
     image: rikaCheatSheets,
+    landscape: rikaCheatSheetsLandscape,
   },
   {
     title: 'skill-visualizer',
@@ -152,8 +173,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
-    focus: '82% bottom',
-    zoom: 1.6,
+    landscape: skillVisualizerLandscape,
   },
   {
     title: 'React Fundamentals',
@@ -165,7 +185,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-react-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-react-fundamentals',
     image: reactFundamentals,
-    focus: '33% top',
+    landscape: reactFundamentalsLandscape,
   },
   {
     title: 'Angular Fundamentals',
@@ -177,7 +197,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
     image: angularFundamentals,
-    focus: 'left top',
+    landscape: angularFundamentalsLandscape,
   },
   {
     title: 'Project Ramp-up',
@@ -197,7 +217,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/project-rampup/',
     repo: 'https://github.com/mazsola739/project-rampup',
     image: projectRampup,
-    focus: 'left top',
+    landscape: projectRampupLandscape,
   },
   {
     title: 'Node.js Mentoring',
@@ -209,7 +229,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-nodejs/',
     repo: 'https://github.com/mazsola739/rika-nodejs',
     image: nodejsMentoring,
-    focus: 'left top',
+    landscape: nodejsMentoringLandscape,
   },
   {
     title: 'Next.js Blog',
@@ -221,7 +241,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-nextjs-blog/',
     repo: 'https://github.com/mazsola739/rika-nextjs-blog',
     image: nextjsBlog,
-    focus: 'left top',
+    landscape: nextjsBlogLandscape,
   },
   {
     title: 'Maze Escape Solver',
@@ -233,7 +253,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hacka/',
     repo: 'https://github.com/mazsola739/rika-hacka',
     image: mazeEscapeSolver,
-    focus: 'left top',
+    landscape: mazeEscapeSolverLandscape,
   },
   {
     title: 'Rikaflix',
@@ -245,7 +265,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikaflix/',
     repo: 'https://github.com/mazsola739/rikaflix',
     image: rikaflix,
-    focus: 'left top',
+    landscape: rikaflixLandscape,
   },
   {
     title: 'json-tabifier',
@@ -265,7 +285,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/json-tabifier/',
     repo: 'https://github.com/mazsola739/json-tabifier',
     image: jsonTabifier,
-    focus: 'left top',
+    landscape: jsonTabifierLandscape,
   },
   {
     title: 'Rika Unicorn Theme',
@@ -277,8 +297,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-unicorn-theme/',
     repo: 'https://github.com/mazsola739/rika-unicorn-theme',
     image: rikaUnicornTheme,
-    focus: 'right top',
-    zoom: 1.25,
+    landscape: rikaUnicornThemeLandscape,
   },
   {
     title: 'Rikatrix',
@@ -290,7 +309,7 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatrix/',
     repo: 'https://github.com/mazsola739/rikatrix',
     image: rikatrix,
-    focus: 'left top',
+    landscape: rikatrixLandscape,
   },
   {
     title: 'CoderGames Solutions',
@@ -310,7 +329,19 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-codergames/',
     repo: 'https://github.com/mazsola739/rika-codergames',
     image: codergames,
-    focus: 'left top',
+    landscape: codergamesLandscape,
+  },
+  {
+    title: 'Rika Data Refinement',
+    level: 3,
+    year: '2025',
+    description:
+      'A just-for-fun Macrodata Refinement terminal from Severance: the scary numbers look calm until the cursor comes near, then they swell and tremble. Box them and refine them into five bins. Files and branches from the show, quarterly incentives and its quotes, all drawn on a canvas.',
+    tags: ['React', 'TypeScript', 'Canvas', 'Web Audio', 'IndexedDB', 'Tailwind CSS', 'Vitest'],
+    live: 'https://mazsola739.github.io/rika-data-refinement/',
+    repo: 'https://github.com/mazsola739/rika-data-refinement',
+    image: rikaDataRefinement,
+    landscape: rikaDataRefinementLandscape,
   },
   {
     title: "Rika's One Night Ultimate Game",
@@ -330,6 +361,6 @@ export const projects: Project[] = [
     ],
     live: 'https://mazsola739.github.io/rika-onug-showcase/',
     image: rikaOnug,
-    focus: '15% top',
+    landscape: rikaOnugLandscape,
   },
 ]
