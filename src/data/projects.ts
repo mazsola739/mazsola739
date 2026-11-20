@@ -1,3 +1,4 @@
+import angularFundamentals from '../assets/projects/angular-fundamentals.webp'
 import codergames from '../assets/projects/codergames.webp'
 import frontEndLab from '../assets/projects/front-end-lab.webp'
 import jsonTabifier from '../assets/projects/json-tabifier.webp'
@@ -133,6 +134,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-react-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-react-fundamentals',
     image: reactFundamentals,
+  },
+  {
+    title: 'Angular Fundamentals',
+    level: 2,
+    year: '2021',
+    description:
+      "My homework from EPAM's Angular Fundamentals course in 2021: a courses app that grew module by module, from components and forms to routing, services and an NgRx store, plus a Star Wars search for the RxJS module. Log in as an admin to add, edit and delete courses, or as a student to browse and search. The old code got lost, so in 2026 I wrote it again from the task sheets with Angular 22, signals and NgRx, on the backend of my React Fundamentals app, which runs right in the browser on GitHub Pages.",
+    tags: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'Signals', 'SCSS', 'Vitest'],
+    live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
+    repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
+    image: angularFundamentals,
   },
   {
     title: 'Project Ramp-up',
