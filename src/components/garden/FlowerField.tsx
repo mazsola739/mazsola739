@@ -136,7 +136,7 @@ function scatterFlowers(width: number, height: number, seed: number): Bloom[] {
 
 /** The page parts a flower or a resting butterfly must never cover: text, cards, images, buttons. */
 const OBSTACLES =
-  '#main :is(h1, h2, h3, h4, p, ul, img, article, a, button, span), #main .rounded-2xl, footer p'
+  '#main :is(h1, h2, h3, h4, p, ul, img, article, a, button, span), #main .rounded-2xl, [data-keep-clear], footer p'
 
 type Box = { left: number; top: number; right: number; bottom: number }
 

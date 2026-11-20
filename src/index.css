@@ -58,6 +58,10 @@
   --color-mane-3: #b39ae6;
   --color-mane-4: #f49bc4;
   --color-mane-5: #e0367a;
+
+  /* Level badges, the same in both themes: white text on raspberry, dark text on the gold. */
+  --color-raspberry: #c8215e;
+  --color-midnight: #2a2463;
 }
 
 /* Page width: at most 1040px, with a 1rem gutter on small screens. */

@@ -51,7 +51,8 @@ export const levels: Level[] = [
     id: 3,
     title: 'Medior',
     tagline: 'It works on your machine too.',
-    description: 'Complete apps with state management, routing, forms and tests.',
+    description:
+      'Complete apps, and tools other people install: an npm package and a VS Code extension.',
   },
   {
     id: 4,
