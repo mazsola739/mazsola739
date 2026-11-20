@@ -7,6 +7,7 @@ import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
 import rikatas from '../assets/projects/rikatas.webp'
+import skillVisualizer from '../assets/projects/skill-visualizer.webp'
 
 export type Level = {
   id: number
@@ -94,6 +95,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatas/',
     repo: 'https://github.com/mazsola739/rikatas',
     image: rikatas,
+  },
+  {
+    title: 'Skill-visualizer',
+    level: 1,
+    year: '2021',
+    description:
+      'My first React app: paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. Every map can also be viewed as an ASCII tree, as PlantUML source or as JSON, and opened as SVG or PNG. The page opens with my own skill maps from June 2021, when I built it. Renovated in 2026 with Vite, React 19 and tests.',
+    tags: ['React', 'JavaScript', 'Vite', 'PlantUML', 'Vitest'],
+    live: 'https://mazsola739.github.io/Skill-visualizer/',
+    repo: 'https://github.com/mazsola739/Skill-visualizer',
+    image: skillVisualizer,
   },
   {
     title: 'Front-end Lab',
