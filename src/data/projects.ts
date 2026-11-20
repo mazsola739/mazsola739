@@ -4,6 +4,7 @@ import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
 import projectRampup from '../assets/projects/project-rampup.webp'
+import reactFundamentals from '../assets/projects/react-fundamentals.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
@@ -119,6 +120,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
+  },
+  {
+    title: 'React Fundamentals',
+    level: 2,
+    year: '2021',
+    description:
+      "My homework from the React Fundamentals course of EPAM's junior program in autumn 2021: a courses app that grew week by week, from components and routing to Redux, thunks and tests. Log in as an admin to add, edit and delete courses, or as a student to browse and search. Rebuilt in 2026 with React 19, TypeScript and Redux Toolkit, with a backend of my own in place of the course's NestJS server: it runs on Bun, or right in the browser on GitHub Pages.",
+    tags: ['React', 'TypeScript', 'Redux Toolkit', 'React Router', 'Tailwind CSS', 'Bun', 'Vitest'],
+    live: 'https://mazsola739.github.io/rika-react-fundamentals/',
+    repo: 'https://github.com/mazsola739/rika-react-fundamentals',
+    image: reactFundamentals,
   },
   {
     title: 'Project Ramp-up',
