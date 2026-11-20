@@ -1,3 +1,4 @@
+import codergames from '../assets/projects/codergames.webp'
 import frontEndLab from '../assets/projects/front-end-lab.webp'
 import jsonTabifier from '../assets/projects/json-tabifier.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
@@ -55,7 +56,7 @@ export const levels: Level[] = [
     title: 'Medior',
     tagline: 'It works on your machine too.',
     description:
-      'Complete apps, and tools other people install: an npm package and a VS Code extension.',
+      'Complete apps, a whole coding competition solved and visualised, and tools other people install: an npm package and a VS Code extension.',
   },
   {
     id: 4,
@@ -225,5 +226,16 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-unicorn-theme/',
     repo: 'https://github.com/mazsola739/rika-unicorn-theme',
     image: rikaUnicornTheme,
+  },
+  {
+    title: 'CoderGames Solutions',
+    level: 3,
+    year: '2026',
+    description:
+      'Every published task of CoderGames, the week-long coding competition of Deutsche Telekom IT Solutions, from 2020 to 2026: 37 tasks in 8 editions, from ciphers and graphs to dynamic programming. Each has a write-up in my own words, a standalone solution, an automatic check against the official answer and an interactive visualisation. Along the way I found five mistakes in the official material, such as wrong official answers for 93 of 103 maps in 2022.',
+    tags: ['TypeScript', 'Node.js', 'Algorithms', 'JavaScript', 'SVG', 'Data visualisation'],
+    live: 'https://mazsola739.github.io/rika-codergames/',
+    repo: 'https://github.com/mazsola739/rika-codergames',
+    image: codergames,
   },
 ]
