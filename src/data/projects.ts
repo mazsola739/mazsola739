@@ -3,6 +3,7 @@ import jsonTabifier from '../assets/projects/json-tabifier.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
+import projectRampup from '../assets/projects/project-rampup.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
 import rikaflix from '../assets/projects/rikaflix.webp'
@@ -118,6 +119,25 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
+  },
+  {
+    title: 'Project Ramp-up',
+    level: 2,
+    year: '2022',
+    description:
+      'My ramp-up task from my EPAM days, before my first project as a junior developer: a browser for the posts, albums, photos, users and todos of the JSONPlaceholder API, with paging, detail pages and a side column on every page. Built in two weeks in February 2022 with React 17 and React Query; rebuilt in 2026 with React 19, TanStack Query 5 and Tailwind, the open TODOs finished and 21 tests added.',
+    tags: [
+      'React',
+      'TypeScript',
+      'TanStack Query',
+      'React Router',
+      'Tailwind CSS',
+      'Vitest',
+      'REST API',
+    ],
+    live: 'https://mazsola739.github.io/project-rampup/',
+    repo: 'https://github.com/mazsola739/project-rampup',
+    image: projectRampup,
   },
   {
     title: 'Maze Escape Solver',
