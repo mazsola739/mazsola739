@@ -8,6 +8,7 @@ import nextjsBlog from '../assets/projects/nextjs-blog.webp'
 import nodejsMentoring from '../assets/projects/nodejs-mentoring.webp'
 import projectRampup from '../assets/projects/project-rampup.webp'
 import reactFundamentals from '../assets/projects/react-fundamentals.webp'
+import rikaCheatSheets from '../assets/projects/rika-cheat-sheets.webp'
 import rikaIpsum from '../assets/projects/rika-ipsum.webp'
 import rikaOnug from '../assets/projects/rika-onug.webp'
 import rikaUnicornTheme from '../assets/projects/rika-unicorn-theme.webp'
@@ -50,7 +51,7 @@ export const levels: Level[] = [
     title: 'Noob',
     tagline: 'Hello, world!',
     description:
-      'First steps: HTML, CSS and JavaScript, Codewars katas, my first course homework and my first React app.',
+      'First steps: HTML, CSS and JavaScript, Codewars katas, my first course homework, the cheat sheets I started collecting and my first React app.',
   },
   {
     id: 2,
@@ -119,6 +120,17 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
     image: frontEndLab,
+  },
+  {
+    title: 'Rika Cheat Sheets',
+    level: 1,
+    year: '2021',
+    description:
+      'My collection from my noob days: whatever I liked or finally understood went in here, starting with my favourite JavaScript snippets in 2021. In 2026 it grew into a site of its own, in English and Hungarian: 8 hand-drawn frontend cheat sheets with a Flexbox and Grid playground, 167 JavaScript snippets with search and favourites, a roadmap of 145 points to tick off and download, and 50 development principles, each with its own poster meme. Plain HTML, CSS and JavaScript, no build.',
+    tags: ['HTML', 'CSS', 'JavaScript', 'SVG', 'localStorage'],
+    live: 'https://mazsola739.github.io/rika-cheat-sheets/',
+    repo: 'https://github.com/mazsola739/rika-cheat-sheets',
+    image: rikaCheatSheets,
   },
   {
     title: 'skill-visualizer',
