@@ -54,7 +54,7 @@ export const levels: Level[] = [
     title: 'Junior',
     tagline: 'It works on my machine.',
     description:
-      "My junior years: EPAM courses in React, Angular and Node.js, a ramp-up task, a hackathon entry and a job application's home task.",
+      "My junior years: courses in React, Angular and Node.js, a ramp-up task, a hackathon entry and a job application's home task.",
   },
   {
     id: 3,
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      'My homework from the EPAM Front-end Lab (FL-HU1), the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS, SCSS and Bootstrap pages run as they were built for the course; the JavaScript tasks are rebuilt with React 19 and TypeScript, with unit tests. Renovated in 2026.',
+      'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS, SCSS and Bootstrap pages run as they were built for the course; the JavaScript tasks are rebuilt with React 19 and TypeScript, with unit tests. Renovated in 2026.',
     tags: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript', 'React', 'TypeScript', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     level: 2,
     year: '2021',
     description:
-      "My homework from the React Fundamentals course of EPAM's junior program in autumn 2021: a courses app that grew week by week, from components and routing to Redux, thunks and tests. Log in as an admin to add, edit and delete courses, or as a student to browse and search. Rebuilt in 2026 with React 19, TypeScript and Redux Toolkit, with a backend of my own in place of the course's NestJS server: it runs on Bun, or right in the browser on GitHub Pages.",
+      "My homework from a React Fundamentals course in autumn 2021: a courses app that grew week by week, from components and routing to Redux, thunks and tests. Log in as an admin to add, edit and delete courses, or as a student to browse and search. Rebuilt in 2026 with React 19, TypeScript and Redux Toolkit, with a backend of my own in place of the course's NestJS server: it runs on Bun, or right in the browser on GitHub Pages.",
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'React Router', 'Tailwind CSS', 'Bun', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-react-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-react-fundamentals',
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     level: 2,
     year: '2021',
     description:
-      "My homework from EPAM's Angular Fundamentals course in 2021: a courses app with forms, routing, services and an NgRx store. I had a taste of Angular here, but I never worked with it after the course: we didn't become friends. The old code got lost, so in 2026 I wrote it again from the task sheets.",
+      "My homework from an Angular Fundamentals course in 2021: a courses app with forms, routing, services and an NgRx store. I had a taste of Angular here, but I never worked with it after the course: we didn't become friends. The old code got lost, so in 2026 I wrote it again from the task sheets.",
     tags: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'Signals', 'SCSS', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     level: 2,
     year: '2022',
     description:
-      'My ramp-up task from my EPAM days, before my first project as a junior developer: a browser for the posts, albums, photos, users and todos of the JSONPlaceholder API, with paging, detail pages and a side column on every page. Built in two weeks in February 2022 with React 17 and React Query; rebuilt in 2026 with React 19, TanStack Query 5 and Tailwind, the open TODOs finished and 21 tests added.',
+      'My ramp-up task before my first project as a junior developer: a browser for the posts, albums, photos, users and todos of the JSONPlaceholder API, with paging, detail pages and a side column on every page. Built in two weeks in February 2022 with React 17 and React Query; rebuilt in 2026 with React 19, TanStack Query 5 and Tailwind, the open TODOs finished and 21 tests added.',
     tags: [
       'React',
       'TypeScript',
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     level: 2,
     year: '2023',
     description:
-      'My home tasks from the EPAM Node.js Global Mentoring Program in autumn 2023, seven modules from a REPL command and a process monitor to my own EventEmitter, streams, tests, a REST API on plain node:http and an Express checkout service. Renovated in 2026 with strict TypeScript and Bun: the unfinished database task is finished with SQLite, every module has tests, and the project page runs most of the code right in the browser.',
+      'My home tasks from a Node.js mentoring program in autumn 2023, seven modules from a REPL command and a process monitor to my own EventEmitter, streams, tests, a REST API on plain node:http and an Express checkout service. Renovated in 2026 with strict TypeScript and Bun: the unfinished database task is finished with SQLite, every module has tests, and the project page runs most of the code right in the browser.',
     tags: ['Node.js', 'TypeScript', 'Express', 'REST API', 'Streams', 'SQLite', 'Bun'],
     live: 'https://mazsola739.github.io/rika-nodejs/',
     repo: 'https://github.com/mazsola739/rika-nodejs',
@@ -207,7 +207,7 @@ export const projects: Project[] = [
     level: 3,
     year: '2024',
     description:
-      'A streaming-site-style movie and TV show browser with 600+ titles: search, genre filters, sorting, paging, a detail page and add / edit / delete. It started as the React home task of the EPAM mentoring program and runs fully in the browser, without a server.',
+      'A streaming-site-style movie and TV show browser with 600+ titles: search, genre filters, sorting, paging, a detail page and add / edit / delete. It started as the home task of a React mentoring program and runs fully in the browser, without a server.',
     tags: ['React', 'TypeScript', 'Redux Toolkit', 'RTK Query', 'Emotion', 'Formik', 'Vitest'],
     live: 'https://mazsola739.github.io/rikaflix/',
     repo: 'https://github.com/mazsola739/rikaflix',
