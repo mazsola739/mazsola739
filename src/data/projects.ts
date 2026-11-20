@@ -108,14 +108,14 @@ export const projects: Project[] = [
     image: frontEndLab,
   },
   {
-    title: 'Skill-visualizer',
+    title: 'skill-visualizer',
     level: 1,
     year: '2021',
     description:
-      'My first React app: paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. Every map can also be viewed as an ASCII tree, as PlantUML source or as JSON, and opened as SVG or PNG. The page opens with my own skill maps from June 2021, when I built it. Renovated in 2026 with Vite, React 19 and tests.',
+      "My first React app. I've always liked visual overviews, so I wondered: what if my knowledge could be seen like a tree and its branches? Before a job interview I was asked to put together a small hobby project of my own, and this is what came of it: paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. It opens with my skills from June 2021; renovated in 2026.",
     tags: ['React', 'JavaScript', 'Vite', 'PlantUML', 'Vitest'],
-    live: 'https://mazsola739.github.io/Skill-visualizer/',
-    repo: 'https://github.com/mazsola739/Skill-visualizer',
+    live: 'https://mazsola739.github.io/skill-visualizer/',
+    repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
   },
   {
