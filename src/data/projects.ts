@@ -258,8 +258,16 @@ export const projects: Project[] = [
     level: 3,
     year: '2026',
     description:
-      'Every published task of CoderGames, the week-long coding competition of Deutsche Telekom IT Solutions, from 2020 to 2026: 37 tasks in 8 editions, from ciphers and graphs to dynamic programming. Each has a write-up in my own words, a standalone solution, an automatic check against the official answer and an interactive visualisation. Along the way I found five mistakes in the official material, such as wrong official answers for 93 of 103 maps in 2022.',
-    tags: ['TypeScript', 'Node.js', 'Algorithms', 'JavaScript', 'SVG', 'Data visualisation'],
+      'Every published task of CoderGames, the week-long coding competition of Deutsche Telekom IT Solutions, from 2020 to 2026: 37 tasks in 8 editions, from ciphers and graphs to dynamic programming. Each has a write-up in my own words, a standalone solution, an automatic check against the official answer and an interactive visualisation, and a playground lets you solve it yourself on the real input, right in the browser. Along the way I found five mistakes in the official material, such as wrong official answers for 93 of 103 maps in 2022. The site is in English and Hungarian.',
+    tags: [
+      'TypeScript',
+      'Node.js',
+      'Algorithms',
+      'JavaScript',
+      'SVG',
+      'Web Workers',
+      'Data visualisation',
+    ],
     live: 'https://mazsola739.github.io/rika-codergames/',
     repo: 'https://github.com/mazsola739/rika-codergames',
     image: codergames,
