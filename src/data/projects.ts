@@ -44,20 +44,22 @@ export const levels: Level[] = [
     id: 1,
     title: 'Noob',
     tagline: 'Hello, world!',
-    description: 'First steps: HTML, CSS, JavaScript and my first React app.',
+    description:
+      'First steps: HTML, CSS and JavaScript, Codewars katas, my first course homework and my first React app.',
   },
   {
     id: 2,
     title: 'Junior',
     tagline: 'It works on my machine.',
-    description: 'Coding challenges, test assignments and small tools.',
+    description:
+      "My junior years: EPAM courses in React, Angular and Node.js, a ramp-up task, a hackathon entry and a job application's home task.",
   },
   {
     id: 3,
     title: 'Medior',
     tagline: 'It works on your machine too.',
     description:
-      'Complete apps, a whole coding competition solved and visualised, and tools other people install: an npm package and a VS Code extension.',
+      'A complete app, a whole coding competition solved and visualised, and tools other people install: an npm package and a VS Code extension.',
   },
   {
     id: 4,
@@ -140,7 +142,7 @@ export const projects: Project[] = [
     level: 2,
     year: '2021',
     description:
-      "My homework from EPAM's Angular Fundamentals course in 2021: a courses app that grew module by module, from components and forms to routing, services and an NgRx store, plus a Star Wars search for the RxJS module. Log in as an admin to add, edit and delete courses, or as a student to browse and search. The old code got lost, so in 2026 I wrote it again from the task sheets with Angular 22, signals and NgRx, on the backend of my React Fundamentals app, which runs right in the browser on GitHub Pages.",
+      "My homework from EPAM's Angular Fundamentals course in 2021: a courses app with forms, routing, services and an NgRx store. I had a taste of Angular here, but I never worked with it after the course: we didn't become friends. The old code got lost, so in 2026 I wrote it again from the task sheets.",
     tags: ['Angular', 'TypeScript', 'NgRx', 'RxJS', 'Signals', 'SCSS', 'Vitest'],
     live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
