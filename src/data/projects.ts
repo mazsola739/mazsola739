@@ -247,7 +247,7 @@ export const projects: Project[] = [
     level: 3,
     year: '2026',
     description:
-      'An animated Windows wallpaper: Matrix rain in pink, lavender and ice blue, with glitter, smoke veils, four themes and a mouse spotlight. The original Matrix code was reportedly scanned from sushi cookbooks, so here the rain spells out real sushi words and recipe steps in katakana. It runs in Lively Wallpaper as one small file; a release workflow publishes the download, and the showcase page runs the wallpaper live, so you can try it before installing.',
+      'An animated Windows wallpaper: Matrix rain in pink, lavender and ice blue, with glitter, smoke veils, four themes and a mouse spotlight. The original Matrix code was reportedly scanned from sushi cookbooks, so here the rain spells out real sushi words and recipe steps in katakana. It runs in Lively Wallpaper as one small file; a release workflow publishes the download, and the showcase page runs the wallpaper live, with a full-screen demo, so you can try it before installing.',
     tags: ['React', 'TypeScript', 'Canvas', 'Vite', 'Lively Wallpaper', 'GitHub Actions'],
     live: 'https://mazsola739.github.io/rikatrix/',
     repo: 'https://github.com/mazsola739/rikatrix',
