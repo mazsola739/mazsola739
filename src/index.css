@@ -1,0 +1,260 @@
+@import "tailwindcss";
+
+/*
+ * Colors from the "You are sweet." unicorn card: turquoise sky, a rainbow mane
+ * (indigo → purple → lavender → pink → raspberry), raspberry text and a golden horn.
+ * Utilities: bg-page, text-muted, border-line, text-accent, text-sky, bg-gold…
+ * Light theme here: a softened version of the card's turquoise is the page (the full #3db5c9
+ * is too strong for long reading), white cards sit on it like the white unicorn.
+ * Raspberry (accent) small text is only used on white.
+ * The dark theme overrides the same tokens below.
+ */
+@theme {
+  --color-page: #b2e2ee;
+  --color-surface: #ffffff;
+  --color-ink: #2a2463;
+  --color-muted: #4b4787;
+  --color-line: #85ccdd;
+  --color-accent: #c8215e;
+  --color-sky: #0f7482;
+  --color-gold: #f2b43a;
+
+  /* Softer than pure white on the turquoise: the label above the name is a pale raspberry;
+     the hero's GitHub and GitLab buttons, the projects' sort switch and the theme button are
+     see-through white. */
+  --color-label: #fbe6ee;
+  --color-button: rgb(255 255 255 / 0.6);
+  /* The project cards: white at 72% over the page, as a solid colour, so the garden behind a
+     card never shows through it. */
+  --color-card: #e9f7fa;
+  /* The grapes, on the order button and in the footer. */
+  --color-grape: #6b4fa8;
+  /* The text fields of the contact card: white on the pale card, the night sky on the dark one. */
+  --color-field: #ffffff;
+
+  /* The big name in the sunset's colours: wine → raspberry → a warm golden yellow. */
+  --color-name-1: #a3164c;
+  --color-name-2: #d63a6a;
+  --color-name-3: #f0a000;
+
+  /* The garden: butterflies flap their wings, flowers sway. */
+  --animate-flap: flap 0.3s ease-in-out infinite;
+  --animate-sway: sway 4.5s ease-in-out infinite;
+
+  @keyframes flap {
+    0%,
+    100% {
+      transform: scaleX(1);
+    }
+    50% {
+      transform: scaleX(0.22);
+    }
+  }
+
+  /* A wobbly back-and-forth turn, with a little extra swing on each side. */
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-7deg);
+    }
+    45% {
+      transform: rotate(8deg);
+    }
+    55% {
+      transform: rotate(6deg);
+    }
+  }
+
+  /* The sunset stripe of the header and the footer, and the photo frames: raspberry → pink →
+     coral → orange, ending in a sunflower yellow. */
+  --color-mane-1: #c8215e;
+  --color-mane-2: #e0367a;
+  --color-mane-3: #f2607a;
+  --color-mane-4: #f8894a;
+  --color-mane-5: #ffc533;
+
+  /* The levels of the timeline, from Noob up: the sunset darkening into a wine-coloured raisin.
+     The same in both themes, all dark enough for white numbers. */
+  /* 00, where it all began: before Noob the line runs on into a sunshine yellow. */
+  --color-level-0: #ffd21f;
+  --color-level-1: #e0722a;
+  --color-level-2: #d6457f;
+  --color-level-3: #c8215e;
+  --color-level-4: #a3164c;
+
+  /* Badge colours for raspberry and midnight, the same in both themes. */
+  --color-raspberry: #c8215e;
+  --color-midnight: #2a2463;
+}
+
+/* Page width: at most 1040px, with a 1rem gutter on small screens. */
+@utility wrapper {
+  width: min(100% - 2rem, 1040px);
+  margin-inline: auto;
+}
+
+/* A skill pill on a card: a tinted fill and a thin border, both running left to right from
+   --pill-a to --pill-b, the colours of the timeline beside it (set by Projects). */
+@utility pill {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--pill-a, var(--color-sky)) var(--pill-tint, 30%), var(--color-card)),
+      color-mix(in oklab, var(--pill-b, var(--color-sky)) var(--pill-tint, 30%), var(--color-card))
+    )
+    padding-box,
+    linear-gradient(90deg, var(--pill-a, var(--color-sky)), var(--pill-b, var(--color-sky)))
+    border-box;
+}
+
+/* The sunset stripe, from raspberry to sunflower yellow. */
+@utility bg-mane {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-mane-1),
+    var(--color-mane-2),
+    var(--color-mane-3),
+    var(--color-mane-4),
+    var(--color-mane-5)
+  );
+}
+
+/* Gradient text for the name, readable in both themes. */
+@utility text-mane {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-name-1),
+    var(--color-name-2),
+    var(--color-name-3)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  /*
+   * Dark theme: the same turquoise sky at night, with pink, lavender and gold highlights.
+   * index.html sets data-theme before the first paint: the visitor's saved choice,
+   * or the system setting when there is none.
+   *
+   * Phone browsers with a dark mode of their own (Chrome's auto dark theme, Samsung Internet)
+   * repaint pages that don't seem to have one, which made the gradient name unreadable. This
+   * page has both themes, so it says so three ways: the color-scheme meta tag in index.html,
+   * "only" in color-scheme (don't repaint this), and a prefers-color-scheme rule, which is what
+   * Samsung Internet looks for (it only matters when the theme script didn't run).
+   */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      color-scheme: dark only;
+    }
+  }
+
+  /* A soft glow at the top of the page that fades into the page color: morning light in the
+     light theme, moonlight in the dark one (overridden below). */
+  :root {
+    --page-glow: radial-gradient(70rem 34rem at 30% 0, #c1e8f2, transparent 70%);
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark only;
+    /* A deeper, bluer turquoise night than the first one, which looked gloomy. */
+    --color-page: #062c41;
+    --color-surface: #0c3a54;
+    --color-ink: #f2fbfd;
+    --color-muted: #acd1e6;
+    --color-line: #214b64;
+    --color-accent: #ff7ab0;
+    --color-sky: #5db7e5;
+    --color-gold: #f6c445;
+    --color-label: #0c3a54;
+    --color-button: #0c3a54;
+    --color-card: #0c3a54;
+    --color-grape: #c3b5ff;
+    --color-field: #062c41;
+    /* The sunset glows brighter at night. */
+    --color-name-1: #ff7ab0;
+    --color-name-2: #ffa3c6;
+    --color-name-3: #f6c445;
+    --color-level-0: #ffd84d;
+    /* Less tint on the night-blue cards, where a strong yellow turns olive. */
+    --pill-tint: 18%;
+    --color-mane-1: #ff5a95;
+    --color-mane-2: #ff7ab0;
+    --color-mane-3: #ff8f86;
+    --color-mane-4: #ffab5e;
+    --color-mane-5: #ffd04d;
+    --page-glow: radial-gradient(70rem 34rem at 30% 0, #063f5a, transparent 70%);
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light only;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-page leading-relaxed text-ink antialiased;
+    background-image: var(--page-glow);
+    background-repeat: no-repeat;
+  }
+
+  :focus-visible {
+    @apply rounded-sm outline-2 outline-ink outline-offset-3;
+  }
+}
+
+/* Switching the theme: night falls from the top, daylight rises from the bottom, with a soft
+   edge. ThemeToggle starts it as a view transition and sets data-switching to the new theme. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  /* both: the last frame stays until the transition ends, so the old theme never flashes back. */
+  animation: sky-down 0.8s cubic-bezier(0.65, 0, 0.35, 1) both;
+  /* Twice the screen and the soft edge tall: the top half shows the new theme, the bottom half
+     hides it, and the 6rem edge between them sweeps down the screen. */
+  mask-image: linear-gradient(to bottom, #000 calc(50% - 3rem), transparent calc(50% + 3rem));
+  mask-size: 100% calc(200% + 6rem);
+  mask-repeat: no-repeat;
+}
+
+@keyframes sky-down {
+  from {
+    mask-position: 0 100%;
+  }
+  to {
+    mask-position: 0 0;
+  }
+}
+
+/* Daylight: the same mask turned upside down, sweeping up from the bottom. */
+:root[data-switching="light"]::view-transition-new(root) {
+  animation-name: sky-up;
+  mask-image: linear-gradient(to top, #000 calc(50% - 3rem), transparent calc(50% + 3rem));
+}
+
+@keyframes sky-up {
+  from {
+    mask-position: 0 0;
+  }
+  to {
+    mask-position: 0 100%;
+  }
+}
+
+/* SPDX-FileCopyrightText: 2026 R. Rika
+   SPDX-License-Identifier: MIT
+   Reusing this code is fine with my name kept on it, but please don't present it as your own original work. */
