@@ -19,10 +19,11 @@ export const headerButton = {
 
 /**
  * The links at the bottom of a project card, sharing the width of the row: the site filled, the code outlined, both small
- * pills that turn raspberry on hover like the header's buttons.
+ * pills that turn raspberry on hover like the header's buttons. Their text is a step smaller than the description, so
+ * the project stays the first thing to read.
  */
 const cardPill =
-  'inline-flex flex-1 items-center justify-center gap-1 rounded-full border px-2.5 py-1.5 text-[0.8rem] font-semibold whitespace-nowrap transition-colors sm:gap-1.5 sm:px-3.5 sm:text-sm'
+  'inline-flex flex-1 items-center justify-center gap-1 rounded-full border px-2.5 py-1 text-[0.8rem] font-semibold whitespace-nowrap transition-colors sm:gap-1.5 sm:px-3'
 
 export const cardButton = {
   primary: `${cardPill} border-ink bg-ink text-surface hover:border-accent hover:bg-accent`,

@@ -8,9 +8,11 @@ import { GitHubIcon, GlobeIcon } from './icons.tsx'
 const aboveCover = 'relative z-1'
 
 /**
- * From lg every card is the same height, and the description gets whatever room is left. This
- * counts how many whole lines fit in it and sets --lines, which clamps the text to them: a text
- * that doesn't fit ends in "…" on its last line instead of being cut through the middle.
+ * From lg every card is the same height. The description takes the room it needs, at most what
+ * is left next to the title and the tags. This counts how many whole lines fit and sets --lines,
+ * which clamps the text to them: a text that doesn't fit ends in "…" on its last line instead of
+ * being cut through the middle. Before measuring, the clamp is lifted, so a card that grows wider
+ * or taller gets its lines back.
  */
 function useFittingLines() {
   const ref = useRef<HTMLDivElement>(null)
@@ -18,6 +20,7 @@ function useFittingLines() {
     const text = ref.current
     if (!text) return
     const fit = () => {
+      text.style.setProperty('--lines', 'none')
       const style = getComputedStyle(text)
       const line = Number.parseFloat(style.lineHeight) || Number.parseFloat(style.fontSize) * 1.5
       // +1: clientHeight is rounded, and the last line must not be lost to a fraction of a pixel.
@@ -27,6 +30,7 @@ function useFittingLines() {
     fit()
     const observer = new ResizeObserver(fit)
     observer.observe(text)
+    if (text.parentElement) observer.observe(text.parentElement)
     return () => observer.disconnect()
   }, [])
   return ref
@@ -38,8 +42,8 @@ function useFittingLines() {
  *
  * Up to lg the card is portrait: the screenshot on top, the text below it, all of it shown. From
  * lg it is landscape, one card per row, every card the same height: the left half is the
- * screenshot, the right half the year, title, description, tags and links. The description is
- * clamped to the room left (see useFittingLines).
+ * screenshot, the right half the year, title, description and tags, with the links at the
+ * bottom. The description is clamped to the room left (see useFittingLines).
  */
 export function ProjectCard({ project }: { project: Project }) {
   const main = project.live ? 'live' : 'repo'
@@ -69,28 +73,29 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex flex-col gap-2.5 px-4 pt-4 sm:px-5 sm:pt-5 lg:col-start-2 lg:row-start-1 lg:min-h-0">
           <p className="text-xs font-semibold text-muted">{project.year}</p>
           <h4 className="text-lg leading-tight font-bold tracking-tight">{project.title}</h4>
-          {/* The box takes the room left and is measured; the text in it is clamped to the
-              whole lines that fit, so no half line peeks out below the "…". */}
+          {/* The box may shrink to the room left and is measured; the text in it is clamped to
+              the whole lines that fit, so no half line peeks out below the "…". */}
           <div
             ref={description}
-            className="text-[0.95rem] text-muted lg:min-h-0 lg:flex-1 lg:text-sm lg:leading-normal"
+            className="text-[0.95rem] text-muted lg:min-h-0 lg:shrink lg:text-sm lg:leading-normal"
           >
             <p className="text-justify hyphens-auto lg:line-clamp-(--lines)">
               {project.description}
             </p>
           </div>
-        </div>
-        {/* Footer: pushed to the bottom, so the links of cards in one row line up. */}
-        <div className="mt-auto grid gap-2.5 px-4 pt-3.5 pb-4 sm:px-5 sm:pb-5 lg:col-start-2 lg:row-start-2">
+          {/* The tags belong to the text: what the project is made of. */}
           {project.tags.length > 0 && (
-            <ul className="flex flex-wrap gap-1" aria-label="Technologies">
+            <ul className="flex shrink-0 flex-wrap gap-1 pt-0.5" aria-label="Technologies">
               {project.tags.map((tag) => (
-                <li key={tag} data-pill className="rounded-full px-2 py-px text-[0.7rem] pill">
+                <li key={tag} data-pill className="rounded-full px-1.5 py-px text-[0.6rem] pill">
                   {tag}
                 </li>
               ))}
             </ul>
           )}
+        </div>
+        {/* Footer: only the links, pushed to the bottom, so the links of cards in one row line up. */}
+        <div className="mt-auto p-4 sm:px-5 sm:pb-5 lg:col-start-2 lg:row-start-2">
           {(project.live || project.repo) && (
             <p className="flex flex-wrap gap-1.5 sm:gap-2">
               {project.live && (
@@ -101,7 +106,7 @@ export function ProjectCard({ project }: { project: Project }) {
                   rel="noreferrer"
                 >
                   <GlobeIcon />
-                  Try it out
+                  Live
                 </a>
               )}
               {project.repo && (
@@ -112,7 +117,7 @@ export function ProjectCard({ project }: { project: Project }) {
                   rel="noreferrer"
                 >
                   <GitHubIcon />
-                  Peek at the code
+                  Code
                 </a>
               )}
             </p>
