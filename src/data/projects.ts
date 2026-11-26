@@ -174,7 +174,7 @@ export const projects: Project[] = [
     year: '2021',
     description:
       "My first React app. I've always liked visual overviews, so I wondered: what if my knowledge could be seen like a tree and its branches? Paste a list of skills as JSON and it draws a mind map, every skill rated from 0 to 8 stars. It opens with my 2026 skills in three maps, front end, back end and the rest, with my June 2021 maps next to them.",
-    tags: ['React', 'JavaScript', 'CSS', 'PlantUML', 'Git', 'Self-rated'],
+    tags: ['React', 'JavaScript', 'CSS', 'PlantUML', 'Git', 'Self-rated ⭐'],
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
