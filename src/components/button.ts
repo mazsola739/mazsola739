@@ -6,11 +6,12 @@ export const button = {
 
 /**
  * The small pill buttons of the sticky header (CV, GitHub, GitLab, Contact me): only the icon on
- * phones, the icon and the label from md. They are the size of the theme button next to them,
- * and on hover they turn raspberry like every other round button on the page.
+ * phones, a size smaller there to leave the page more room; the icon and the label from md. They
+ * are the size of the theme button next to them, and on hover they turn raspberry like every
+ * other round button on the page.
  */
 const pill =
-  'inline-flex size-8 shrink-0 items-center justify-center gap-1.5 rounded-full border text-sm font-semibold transition-colors sm:size-9 md:size-auto md:px-3.5 md:py-1.5'
+  'inline-flex size-7 shrink-0 items-center justify-center gap-1.5 rounded-full border text-sm font-semibold transition-colors sm:size-9 md:size-auto md:px-3.5 md:py-1.5'
 
 export const headerButton = {
   primary: `${pill} border-ink bg-ink text-surface hover:border-accent hover:bg-accent`,
@@ -18,12 +19,11 @@ export const headerButton = {
 }
 
 /**
- * The links at the bottom of a project card, sharing the width of the row: the site filled, the code outlined, both small
- * pills that turn raspberry on hover like the header's buttons. Their text is a step smaller than the description, so
- * the project stays the first thing to read.
+ * The links at the bottom of a project card: round icon buttons, the site filled (a globe), the
+ * code outlined (the GitHub mark). They turn raspberry on hover like the header's buttons, and
+ * stay small, so the project is the first thing to read.
  */
-const cardPill =
-  'inline-flex flex-1 items-center justify-center gap-1 rounded-full border px-2.5 py-1 text-[0.8rem] font-semibold whitespace-nowrap transition-colors sm:gap-1.5 sm:px-3'
+const cardPill = 'grid size-9 place-items-center rounded-full border text-lg transition-colors'
 
 export const cardButton = {
   primary: `${cardPill} border-ink bg-ink text-surface hover:border-accent hover:bg-accent`,

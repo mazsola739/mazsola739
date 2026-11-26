@@ -15,9 +15,14 @@ export function Hero() {
     >
       <div className="pb-6 md:pb-[clamp(1.5rem,4vw,2.5rem)]">
         {/* The role in an outlined pill, the size of the header buttons, with the unicorn. */}
-        <p className="mx-auto flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-label py-1 pr-4 pl-1.5 text-sm font-bold tracking-widest text-accent uppercase md:mx-0">
+        <p className="mx-auto flex w-fit items-center gap-2 rounded-full border border-accent/40 bg-label py-1 pr-3 pl-1.5 text-[0.7rem] font-bold tracking-wider whitespace-nowrap text-accent uppercase min-[400px]:pr-4 min-[400px]:text-xs sm:text-sm sm:tracking-widest md:mx-0">
           <img className="size-7 object-contain" src={unicorn} alt="" width={28} height={28} />
-          {profile.role}
+          <span>
+            {profile.role}
+            {profile.roleNote && (
+              <span className="font-semibold opacity-75"> · {profile.roleNote}</span>
+            )}
+          </span>
         </p>
         <h1
           id="hero-title"

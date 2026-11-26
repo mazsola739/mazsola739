@@ -5,6 +5,7 @@ export type Profile = {
   /** What people call me; shown under the name. */
   nickname: string
   role: string
+  roleNote: string
   /** How the nickname sounds, written the way a dictionary writes it. */
   pronunciation: string
   /** The intro as a dictionary entry: numbered meanings under the name. */
@@ -28,9 +29,11 @@ export const profile: Profile = {
   name: 'Erika Rostás',
   nickname: 'Rika',
   role: 'Full-stack Developer',
+  /** Said once, on the role's pill in the intro: how I work. */
+  roleNote: 'AI-assisted',
   pronunciation: '/ˈri.kɒ/',
   definitions: [
-    'A full-stack developer who has been coding since 2020, from a first “Hello, world!” in a sandbox to full-stack apps built with AI assistance.',
+    'A developer who has been coding since 2020, from a first “Hello, world!” in a sandbox to full-stack apps.',
     'Someone whose everyday pair programmer is Claude (GitHub Copilot and ChatGPT lend a hand too).',
   ],
   seeAlso: 'unicorn',

@@ -97,16 +97,17 @@ export function ProjectCard({ project }: { project: Project }) {
         {/* Footer: only the links, pushed to the bottom, so the links of cards in one row line up. */}
         <div className="mt-auto p-4 sm:px-5 sm:pb-5 lg:col-start-2 lg:row-start-2">
           {(project.live || project.repo) && (
-            <p className="flex flex-wrap gap-1.5 sm:gap-2">
+            <p className="flex gap-2">
               {project.live && (
                 <a
                   className={`${cardButton.primary} ${aboveCover}`}
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
+                  title="Live site"
                 >
                   <GlobeIcon />
-                  Live
+                  <span className="sr-only">Live site of {project.title}</span>
                 </a>
               )}
               {project.repo && (
@@ -115,9 +116,10 @@ export function ProjectCard({ project }: { project: Project }) {
                   href={project.repo}
                   target="_blank"
                   rel="noreferrer"
+                  title="Code on GitHub"
                 >
                   <GitHubIcon />
-                  Code
+                  <span className="sr-only">Code of {project.title} on GitHub</span>
                 </a>
               )}
             </p>

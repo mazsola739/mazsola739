@@ -8,16 +8,16 @@ import { ThemeToggle } from './ThemeToggle.tsx'
 /**
  * The sticky header: my photo and name on the left, so visitors still see who I am while they
  * scroll; on the right the CV, my links, the contact window and the theme button. On phones the
- * buttons are icons only (their names are still read out).
+ * header is slimmer and the buttons are icons only (their names are still read out).
  */
 export function Header() {
   return (
     <header className="sticky top-0 z-10 bg-page/85 backdrop-blur-md">
-      <div className="wrapper flex min-h-16 items-center justify-between gap-3">
+      <div className="wrapper flex min-h-12 items-center justify-between gap-3 sm:min-h-16">
         <a className="flex min-w-0 items-center gap-2.5" href="#top">
           <span className="shrink-0 rounded-full bg-mane p-0.5">
             <img
-              className="block size-8 rounded-full object-cover sm:size-9"
+              className="block size-7 rounded-full object-cover sm:size-9"
               src={portrait}
               alt=""
               width={72}
@@ -25,7 +25,7 @@ export function Header() {
             />
           </span>
           <span className="grid min-w-0 leading-tight">
-            <span className="truncate font-bold">{profile.name}</span>
+            <span className="truncate text-sm font-bold sm:text-base">{profile.name}</span>
             <span className="hidden truncate text-xs text-muted sm:block">{profile.role}</span>
           </span>
         </a>
@@ -60,7 +60,7 @@ export function Header() {
         </div>
       </div>
       {/* The rainbow mane of the unicorn card, as the header's bottom edge. */}
-      <div aria-hidden="true" className="h-1 bg-mane" />
+      <div aria-hidden="true" className="h-0.5 bg-mane sm:h-1" />
     </header>
   )
 }

@@ -66,7 +66,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="grid size-9 place-items-center rounded-full border border-line bg-button text-lg text-ink transition-colors hover:border-accent hover:text-accent"
+      className="grid size-7 place-items-center rounded-full border border-line bg-button text-lg text-ink transition-colors hover:border-accent hover:text-accent sm:size-9"
       onClick={toggle}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}

@@ -94,18 +94,20 @@
 }
 
 /* A skill pill on a card: a tinted fill and a thin border, both running left to right from
-   --pill-a to --pill-b, the colours of the timeline beside it (set by Projects). */
+   --pill-a to --pill-b, the colours of the timeline beside it (set by Projects). --pill-lift
+   mixes white into both colours, so the pills stay light enough on the night-blue cards. */
 @utility pill {
+  --pill-from: color-mix(in oklab, var(--pill-a, var(--color-sky)), white var(--pill-lift, 0%));
+  --pill-to: color-mix(in oklab, var(--pill-b, var(--color-sky)), white var(--pill-lift, 0%));
   border: 1px solid transparent;
   background:
     linear-gradient(
       90deg,
-      color-mix(in oklab, var(--pill-a, var(--color-sky)) var(--pill-tint, 30%), var(--color-card)),
-      color-mix(in oklab, var(--pill-b, var(--color-sky)) var(--pill-tint, 30%), var(--color-card))
+      color-mix(in oklab, var(--pill-from) var(--pill-tint, 30%), var(--color-card)),
+      color-mix(in oklab, var(--pill-to) var(--pill-tint, 30%), var(--color-card))
     )
     padding-box,
-    linear-gradient(90deg, var(--pill-a, var(--color-sky)), var(--pill-b, var(--color-sky)))
-    border-box;
+    linear-gradient(90deg, var(--pill-from), var(--pill-to)) border-box;
 }
 
 /* The sunset stripe, from raspberry to sunflower yellow. */
@@ -177,8 +179,10 @@
     --color-name-2: #ffa3c6;
     --color-name-3: #f6c445;
     --color-level-0: #ffd84d;
-    /* Less tint on the night-blue cards, where a strong yellow turns olive. */
-    --pill-tint: 18%;
+    /* Less tint on the night-blue cards, where a strong yellow turns olive; a little white
+       instead, so the wine-coloured pills don't sink into the blue. */
+    --pill-tint: 22%;
+    --pill-lift: 30%;
     --color-mane-1: #ff5a95;
     --color-mane-2: #ff7ab0;
     --color-mane-3: #ff8f86;
