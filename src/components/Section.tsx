@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 type SectionProps = {
   id: string
   title: string
-  subtitle: string
+  subtitle?: string
   /** Controls next to the title (e.g. a switch); on phones they go under the subtitle. */
   actions?: ReactNode
   children: ReactNode
@@ -24,7 +24,7 @@ export function Section({ id, title, subtitle, actions, children }: SectionProps
           >
             {title}
           </h2>
-          <p className="mt-2 text-muted">{subtitle}</p>
+          {subtitle && <p className="mt-2 text-muted">{subtitle}</p>}
         </div>
         {actions}
       </header>

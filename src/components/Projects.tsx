@@ -29,44 +29,73 @@ const rankedLevels = levels.map((level, rank) => ({ level, rank }))
 type Order = 'raisin-first' | 'noob-first'
 
 /**
- * One button next to the section title turns the order round. It says in words what it does, with
- * the picture of where it starts: a sprout for Noob, grapes for Raisin. The subtitle's question
- * leads to it.
+ * A round button, the shape of the level badges, turns the order round. It sits at both ends of
+ * the timeline, joined to it by the line: at the top in front of the subtitle, and at the bottom
+ * after the last badge. It shows the picture of where the new order starts (a sprout for Noob,
+ * grapes for Raisin); the text next to it ends in the words of what it does.
  */
-const ORDERS: Record<Order, { subtitle: string; button: ReactNode; next: Order }> = {
+const ORDERS: Record<
+  Order,
+  { subtitle: string; bottom: string; label: string; icon: ReactNode; next: Order }
+> = {
   'raisin-first': {
     subtitle:
       'Aged to perfection on top, fresh sprouts at the bottom. Fancy the origin story instead?',
-    button: (
-      <>
-        <SproutIcon />
-        Rewind to the seed
-      </>
-    ),
+    bottom: 'Back at the seed, where it all began. Watch it grow the other way round?',
+    label: 'Rewind to the seed',
+    icon: <SproutIcon />,
     next: 'noob-first',
   },
   'noob-first': {
     subtitle: 'Watch it grow, from a tiny seed to a wrinkly raisin. Too slow for you?',
-    button: (
-      <>
-        <GrapesIcon className="fill-grape" />
-        Skip to the raisin
-      </>
-    ),
+    bottom: 'Still growing, with no end in sight. Rather start with the ripest?',
+    label: 'Skip to the raisin',
+    icon: <GrapesIcon className="fill-grape" />,
     next: 'raisin-first',
   },
 }
 
-function OrderButton({ order, onChange }: { order: Order; onChange: (order: Order) => void }) {
-  const { button, next } = ORDERS[order]
+/**
+ * The switch with its text. `stop` is the line's colour where the button sits: the line runs
+ * into it, and its border takes that colour; `scroll` brings the top of the projects back into view (for the bottom switch, which
+ * would otherwise leave the visitor at the far end of the new order).
+ */
+function OrderSwitch({
+  order,
+  onChange,
+  text,
+  stop,
+  scroll,
+  className = '',
+}: {
+  order: Order
+  onChange: (order: Order) => void
+  text: string
+  stop: string
+  scroll?: boolean
+  className?: string
+}) {
+  const { label, icon, next } = ORDERS[order]
   return (
-    <button
-      type="button"
-      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-button px-4 py-2 text-sm font-semibold whitespace-nowrap text-ink transition-colors hover:border-accent hover:text-accent"
-      onClick={() => onChange(next)}
-    >
-      {button}
-    </button>
+    <div className={`flex items-center gap-3 md:gap-x-3 ${className}`}>
+      <button
+        type="button"
+        data-stop={stop}
+        aria-label={label}
+        title={label}
+        className="relative grid h-8 w-12 shrink-0 cursor-pointer place-items-center rounded-full border-2 border-(--stop) bg-card text-lg text-ink ring-4 ring-page transition-colors hover:border-accent hover:text-accent"
+        style={{ '--stop': stop } as CSSProperties}
+        onClick={() => {
+          onChange(next)
+          if (scroll) document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+        }}
+      >
+        {icon}
+      </button>
+      <p className="text-muted">
+        {text} <span className="font-semibold text-ink">{label}.</span>
+      </p>
+    </div>
   )
 }
 
@@ -78,8 +107,8 @@ const START_COLOR = 'var(--color-level-0)'
 
 /**
  * From md the levels form a timeline: the badges sit on one line that runs through the colours,
- * from badge to badge, and on to 00, the start, below Noob (only when Raisin comes first: the other way round the line
- * simply starts at Noob).
+ * from badge to badge, and on to the badge at its end: 00, the start, below Noob when Raisin comes
+ * first; ∞, still growing, below Raisin the other way round.
  * The line's gradient has a stop at every badge, so it is measured from the page (useTimeline).
  * The skill pills of the cards take the colour of the line at their height.
  */
@@ -102,7 +131,7 @@ function useTimeline(order: Order) {
         .sort((a, b) => a.y - b.y)
       if (stops.length === 0) return
       const first = stops[0].y
-      const end = Math.max(stops[stops.length - 1].y, root.offsetHeight)
+      const end = stops[stops.length - 1].y
       if (line.current) {
         line.current.style.top = `${first}px`
         line.current.style.height = `${end - first}px`
@@ -140,12 +169,26 @@ function useTimeline(order: Order) {
   return { box, line }
 }
 
-/** The 00 badge: sunshine yellow, the start before anything happened. Only on the timeline (from md). */
-function StartBadge({ className }: { className: string }) {
+/** ∞, after Raisin: the learning goes on. In Raisin's wine colour, where the line ends. */
+const ENDLESS_COLOR = 'var(--color-level-4)'
+
+/**
+ * The badge at the end of the line, only on the timeline (from md). Raisin first: 00 in sunshine
+ * yellow, the start before anything happened. Noob first: ∞ in wine, still growing.
+ */
+function EndBadge({ raisinFirst }: { raisinFirst: boolean }) {
+  const color = raisinFirst ? START_COLOR : ENDLESS_COLOR
   return (
-    <div aria-hidden="true" data-stop={START_COLOR} className={`hidden md:block ${className}`}>
-      <span className="relative inline-block w-12 rounded-full bg-(--color-level-0) py-1 text-center text-base font-extrabold text-white tabular-nums ring-4 ring-page [text-shadow:0_1px_2px_rgb(0_0_0/0.3)]">
-        00
+    <div aria-hidden="true" data-stop={color} className="mt-12 hidden md:block">
+      <span
+        className="relative inline-flex h-8 w-12 items-center justify-center rounded-full text-base font-extrabold text-white tabular-nums ring-4 ring-page [text-shadow:0_1px_2px_rgb(0_0_0/0.3)]"
+        style={{ backgroundColor: color }}
+      >
+        {raisinFirst ? (
+          '00'
+        ) : (
+          <span className="-translate-y-0.5 text-[1.65rem] leading-none">∞</span>
+        )}
       </span>
     </div>
   )
@@ -157,21 +200,25 @@ export function Projects() {
 
   const raisinFirst = order === 'raisin-first'
   const shownLevels = raisinFirst ? [...rankedLevels].reverse() : rankedLevels
-  const { subtitle } = ORDERS[order]
+  const { subtitle, bottom } = ORDERS[order]
   const { box, line } = useTimeline(order)
+  const firstColor = LEVEL_COLORS[shownLevels[0].rank % LEVEL_COLORS.length]
+  const endColor = raisinFirst ? START_COLOR : ENDLESS_COLOR
 
   return (
-    <Section
-      id="projects"
-      title="Projects"
-      subtitle={subtitle}
-      actions={<OrderButton order={order} onChange={setOrder} />}
-    >
+    <Section id="projects" title="Projects">
       <div ref={box} className="relative">
         <div
           ref={line}
           aria-hidden="true"
           className="absolute left-[calc(1.5rem-2px)] hidden w-1 rounded-full md:block"
+        />
+        <OrderSwitch
+          className="-mt-4 mb-8 md:mb-12"
+          order={order}
+          onChange={setOrder}
+          text={subtitle}
+          stop={firstColor}
         />
         <ol className="grid gap-8 md:gap-12">
           {shownLevels.map(({ level, rank }) => {
@@ -230,7 +277,15 @@ export function Projects() {
             )
           })}
         </ol>
-        {raisinFirst && <StartBadge className="mt-12" />}
+        <EndBadge raisinFirst={raisinFirst} />
+        <OrderSwitch
+          className="mt-8 md:mt-12"
+          order={order}
+          onChange={setOrder}
+          text={bottom}
+          stop={endColor}
+          scroll
+        />
       </div>
     </Section>
   )
