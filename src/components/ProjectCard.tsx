@@ -42,8 +42,9 @@ function useFittingLines() {
  *
  * Up to lg the card is portrait: the screenshot on top, the text below it, all of it shown. From
  * lg it is landscape, one card per row, every card the same height: the left half is the
- * screenshot, the right half the year, title, description and tags, with the links at the
- * bottom. The description is clamped to the room left (see useFittingLines).
+ * screenshot, the right half the year and the links on one row, then the title, description
+ * and tags, centred top to bottom. The description is clamped to the room left (see
+ * useFittingLines).
  */
 export function ProjectCard({ project }: { project: Project }) {
   const main = project.live ? 'live' : 'repo'
@@ -51,9 +52,9 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     // On phones the cards sit in a swipeable row (see Projects): fixed width, snapping into place.
     <div className="relative flex w-[min(85%,22rem)] shrink-0 snap-start md:w-auto">
-      <article className="relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-2xl border border-line bg-card transition-[scale,border-color,box-shadow] duration-200 hover:border-accent/60 hover:shadow-lg hover:shadow-ink/10 active:scale-[0.98] motion-reduce:transition-none lg:grid lg:h-88 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)_auto] lg:active:scale-[0.99]">
+      <article className="relative flex flex-1 cursor-pointer flex-col overflow-hidden rounded-2xl border border-line bg-card transition-[scale,border-color,box-shadow] duration-200 hover:border-accent/60 hover:shadow-lg hover:shadow-ink/10 active:scale-[0.98] motion-reduce:transition-none lg:grid lg:h-88 lg:grid-cols-2 lg:grid-rows-1 lg:active:scale-[0.99]">
         {project.image && (
-          <div className="overflow-hidden border-b border-line lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:border-r lg:border-b-0">
+          <div className="overflow-hidden border-b border-line lg:col-start-1 lg:row-start-1 lg:border-r lg:border-b-0">
             {/* The landscape card (from lg) has its own screenshot in its own shape; the browser
                 downloads only the one it shows. `contents`: the picture adds no box of its own,
                 so the image still fills the frame. */}
@@ -70,8 +71,40 @@ export function ProjectCard({ project }: { project: Project }) {
             </picture>
           </div>
         )}
-        <div className="flex flex-col gap-2.5 px-4 pt-4 sm:px-5 sm:pt-5 lg:col-start-2 lg:row-start-1 lg:min-h-0">
-          <p className="text-xs font-semibold text-muted">{project.year}</p>
+        <div className="flex flex-col gap-2.5 p-4 sm:p-5 lg:col-start-2 lg:row-start-1 lg:min-h-0 lg:justify-center">
+          {/* The year and the links share the top row: the links stay at hand without a row of
+              their own, and the text below gets the room. */}
+          <div className="flex min-h-9 shrink-0 items-center justify-between gap-3">
+            <p className="text-xs font-semibold text-muted">{project.year}</p>
+            {(project.live || project.repo) && (
+              <p className="flex shrink-0 gap-2">
+                {project.live && (
+                  <a
+                    className={`${cardButton.primary} ${aboveCover}`}
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Live site"
+                  >
+                    <GlobeIcon />
+                    <span className="sr-only">Live site of {project.title}</span>
+                  </a>
+                )}
+                {project.repo && (
+                  <a
+                    className={`${main === 'repo' ? cardButton.primary : cardButton.secondary} ${aboveCover}`}
+                    href={project.repo}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Code on GitHub"
+                  >
+                    <GitHubIcon />
+                    <span className="sr-only">Code of {project.title} on GitHub</span>
+                  </a>
+                )}
+              </p>
+            )}
+          </div>
           <h4 className="text-lg leading-tight font-bold tracking-tight">{project.title}</h4>
           {/* The box may shrink to the room left and is measured; the text in it is clamped to
               the whole lines that fit, so no half line peeks out below the "…". */}
@@ -92,37 +125,6 @@ export function ProjectCard({ project }: { project: Project }) {
                 </li>
               ))}
             </ul>
-          )}
-        </div>
-        {/* Footer: only the links, pushed to the bottom, so the links of cards in one row line up. */}
-        <div className="mt-auto p-4 sm:px-5 sm:pb-5 lg:col-start-2 lg:row-start-2">
-          {(project.live || project.repo) && (
-            <p className="flex gap-2">
-              {project.live && (
-                <a
-                  className={`${cardButton.primary} ${aboveCover}`}
-                  href={project.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Live site"
-                >
-                  <GlobeIcon />
-                  <span className="sr-only">Live site of {project.title}</span>
-                </a>
-              )}
-              {project.repo && (
-                <a
-                  className={`${main === 'repo' ? cardButton.primary : cardButton.secondary} ${aboveCover}`}
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Code on GitHub"
-                >
-                  <GitHubIcon />
-                  <span className="sr-only">Code of {project.title} on GitHub</span>
-                </a>
-              )}
-            </p>
           )}
         </div>
         {/* Clicking anywhere else on the card opens the main link too. This cover is a link of

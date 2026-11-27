@@ -149,7 +149,7 @@ export const projects: Project[] = [
     level: 1,
     year: '2021',
     description:
-      'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. The HTML, CSS and Bootstrap pages run as they were built; the JavaScript tasks are rebuilt with React 19 and TypeScript, with tests.',
+      'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. Simple beginner solutions in plain HTML, CSS, Bootstrap and JavaScript, tidied up in 2026.',
     tags: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript', 'Git'],
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
