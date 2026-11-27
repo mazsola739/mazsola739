@@ -120,7 +120,7 @@ export const projects: Project[] = [
     year: '2021',
     description:
       'My homework from Front-end Lab, the course before my first developer job: 15 tasks from HTML basics to routing with the History API. Simple beginner solutions in plain HTML, CSS, Bootstrap and JavaScript, tidied up in 2026.',
-    tags: ['HTML', 'SCSS', 'Bootstrap', 'JavaScript', 'Git'],
+    tags: ['HTML', 'CSS', 'SCSS', 'Bootstrap', 'JavaScript', 'ESLint', 'Git', 'Noob'],
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
     image: frontEndLab,
