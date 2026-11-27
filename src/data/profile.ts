@@ -29,7 +29,7 @@ export const profile: Profile = {
   name: 'Erika Rostás',
   nickname: 'Rika',
   role: 'Full-stack Developer',
-  /** Said once, on the role's pill in the intro: how I work. */
+  /** How I work: said next to the role, in the header and on the role's pill in the intro. */
   roleNote: 'AI-assisted',
   pronunciation: '/ˈri.kɒ/',
   definitions: [

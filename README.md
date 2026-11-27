@@ -63,7 +63,7 @@ bun run dev
 | `src/data/profile.ts`  | name, role, introduction, CV, links, and the Web3Forms access key of the contact form (empty = no form) |
 | `src/data/projects.ts` | the levels and every project: title, year, text, tags, links and screenshots                            |
 | `src/index.css`        | Tailwind theme: colours (light and dark), the level colours and the page width                          |
-| `src/assets/projects/` | two screenshots per project: one for the card, one for the wide landscape card                          |
+| `src/assets/projects/` | one screenshot per project, shown on top of its card                                                    |
 
 ### Deployment
 

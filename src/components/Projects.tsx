@@ -216,8 +216,8 @@ export function Projects() {
                 </div>
                 {/* Phones: a row of cards to swipe through, edge to edge, the next card peeking in
                   (the padding leaves room for the flowers on the card borders). From md: a grid,
-                  where a lone card fills the row (auto-fit). From lg: one landscape card per row. */}
-                <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-4 overflow-x-auto px-4 py-5 md:mx-0 md:grid md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] md:overflow-visible md:p-0 lg:grid-cols-1 lg:gap-5">
+                  where a lone card fills the row (auto-fit). From lg: always two cards side by side. */}
+                <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-4 overflow-x-auto px-4 py-5 md:mx-0 md:grid md:grid-cols-[repeat(auto-fit,minmax(16rem,1fr))] md:overflow-visible md:p-0 lg:grid-cols-2 lg:gap-5">
                   {items.length > 0 ? (
                     items.map((project) => <ProjectCard key={project.title} project={project} />)
                   ) : (

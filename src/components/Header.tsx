@@ -26,7 +26,10 @@ export function Header() {
           </span>
           <span className="grid min-w-0 leading-tight">
             <span className="truncate text-sm font-bold sm:text-base">{profile.name}</span>
-            <span className="hidden truncate text-xs text-muted sm:block">{profile.role}</span>
+            <span className="hidden truncate text-xs text-muted sm:block">
+              {profile.role}
+              {profile.roleNote && ` · ${profile.roleNote}`}
+            </span>
           </span>
         </a>
 

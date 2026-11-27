@@ -2,27 +2,6 @@ import angularFundamentals from '../assets/projects/angular-fundamentals.webp'
 import codergames from '../assets/projects/codergames.webp'
 import frontEndLab from '../assets/projects/front-end-lab.webp'
 import jsonTabifier from '../assets/projects/json-tabifier.webp'
-import angularFundamentalsLandscape from '../assets/projects/landscape/angular-fundamentals.webp'
-import codergamesLandscape from '../assets/projects/landscape/codergames.webp'
-import frontEndLabLandscape from '../assets/projects/landscape/front-end-lab.webp'
-import jsonTabifierLandscape from '../assets/projects/landscape/json-tabifier.webp'
-import matchmakerLandscape from '../assets/projects/landscape/matchmaker.webp'
-import mazeEscapeSolverLandscape from '../assets/projects/landscape/maze-escape-solver.webp'
-import nextjsBlogLandscape from '../assets/projects/landscape/nextjs-blog.webp'
-import nodejsMentoringLandscape from '../assets/projects/landscape/nodejs-mentoring.webp'
-import projectRampupLandscape from '../assets/projects/landscape/project-rampup.webp'
-import reactFundamentalsLandscape from '../assets/projects/landscape/react-fundamentals.webp'
-import rikaBuildLandscape from '../assets/projects/landscape/rika-build.webp'
-import rikaCheatSheetsLandscape from '../assets/projects/landscape/rika-cheat-sheets.webp'
-import rikaDataRefinementLandscape from '../assets/projects/landscape/rika-data-refinement.webp'
-import rikaIpsumLandscape from '../assets/projects/landscape/rika-ipsum.webp'
-import rikaOnugLandscape from '../assets/projects/landscape/rika-onug.webp'
-import rikaUnicornThemeLandscape from '../assets/projects/landscape/rika-unicorn-theme.webp'
-import rikaflixLandscape from '../assets/projects/landscape/rikaflix.webp'
-import rikatasLandscape from '../assets/projects/landscape/rikatas.webp'
-import rikatrixLandscape from '../assets/projects/landscape/rikatrix.webp'
-import skillVisualizerLandscape from '../assets/projects/landscape/skill-visualizer.webp'
-import wickedPlanLandscape from '../assets/projects/landscape/wicked-plan.webp'
 import matchmaker from '../assets/projects/matchmaker.webp'
 import mazeEscapeSolver from '../assets/projects/maze-escape-solver.webp'
 import nextjsBlog from '../assets/projects/nextjs-blog.webp'
@@ -63,12 +42,6 @@ export type Project = {
   repo?: string
   /** Screenshot: put it in src/assets/projects/ and import it here. */
   image?: string
-  /**
-   * Screenshot for the landscape card (from lg): the part of the live page that matters, in the
-   * card's shape (367 x 350, saved at 2x as 734 x 700) in src/assets/projects/landscape/.
-   * Without it, the landscape card shows the middle of `image`.
-   */
-  landscape?: string
 }
 
 /**
@@ -118,7 +91,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hello-world/',
     repo: 'https://github.com/mazsola739/rika-hello-world',
     image: matchmaker,
-    landscape: matchmakerLandscape,
   },
   {
     title: 'Rika Ipsum',
@@ -130,7 +102,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-ipsum/',
     repo: 'https://github.com/mazsola739/rika-ipsum',
     image: rikaIpsum,
-    landscape: rikaIpsumLandscape,
   },
   {
     title: 'Rikatas',
@@ -142,7 +113,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatas/',
     repo: 'https://github.com/mazsola739/rikatas',
     image: rikatas,
-    landscape: rikatasLandscape,
   },
   {
     title: 'Front-end Lab',
@@ -154,7 +124,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-fl-hu1/',
     repo: 'https://github.com/mazsola739/rika-fl-hu1',
     image: frontEndLab,
-    landscape: frontEndLabLandscape,
   },
   {
     title: 'Rika Cheat Sheets',
@@ -166,7 +135,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-cheat-sheets/',
     repo: 'https://github.com/mazsola739/rika-cheat-sheets',
     image: rikaCheatSheets,
-    landscape: rikaCheatSheetsLandscape,
   },
   {
     title: "Rika's Skill Visualizer",
@@ -178,7 +146,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/skill-visualizer/',
     repo: 'https://github.com/mazsola739/skill-visualizer',
     image: skillVisualizer,
-    landscape: skillVisualizerLandscape,
   },
   {
     title: 'React Fundamentals',
@@ -190,7 +157,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-react-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-react-fundamentals',
     image: reactFundamentals,
-    landscape: reactFundamentalsLandscape,
   },
   {
     title: 'Angular Fundamentals',
@@ -202,7 +168,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-angular-fundamentals/',
     repo: 'https://github.com/mazsola739/rika-angular-fundamentals',
     image: angularFundamentals,
-    landscape: angularFundamentalsLandscape,
   },
   {
     title: 'RikaBuild',
@@ -214,7 +179,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-build/',
     repo: 'https://github.com/mazsola739/rika-build',
     image: rikaBuild,
-    landscape: rikaBuildLandscape,
   },
   {
     title: 'Project Ramp-up',
@@ -226,7 +190,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/project-rampup/',
     repo: 'https://github.com/mazsola739/project-rampup',
     image: projectRampup,
-    landscape: projectRampupLandscape,
   },
   {
     title: 'Node.js Mentoring',
@@ -238,7 +201,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-nodejs/',
     repo: 'https://github.com/mazsola739/rika-nodejs',
     image: nodejsMentoring,
-    landscape: nodejsMentoringLandscape,
   },
   {
     title: 'Next.js Blog',
@@ -250,7 +212,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-nextjs-blog/',
     repo: 'https://github.com/mazsola739/rika-nextjs-blog',
     image: nextjsBlog,
-    landscape: nextjsBlogLandscape,
   },
   {
     title: 'Maze Escape Solver',
@@ -262,7 +223,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-hacka/',
     repo: 'https://github.com/mazsola739/rika-hacka',
     image: mazeEscapeSolver,
-    landscape: mazeEscapeSolverLandscape,
   },
   {
     title: 'Rikaflix',
@@ -274,7 +234,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikaflix/',
     repo: 'https://github.com/mazsola739/rikaflix',
     image: rikaflix,
-    landscape: rikaflixLandscape,
   },
   {
     title: 'json-tabifier',
@@ -294,7 +253,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/json-tabifier/',
     repo: 'https://github.com/mazsola739/json-tabifier',
     image: jsonTabifier,
-    landscape: jsonTabifierLandscape,
   },
   {
     title: 'Rika Unicorn Theme',
@@ -306,7 +264,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-unicorn-theme/',
     repo: 'https://github.com/mazsola739/rika-unicorn-theme',
     image: rikaUnicornTheme,
-    landscape: rikaUnicornThemeLandscape,
   },
   {
     title: 'Rikatrix',
@@ -318,7 +275,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rikatrix/',
     repo: 'https://github.com/mazsola739/rikatrix',
     image: rikatrix,
-    landscape: rikatrixLandscape,
   },
   {
     title: 'CoderGames Solutions',
@@ -338,7 +294,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-codergames/',
     repo: 'https://github.com/mazsola739/rika-codergames',
     image: codergames,
-    landscape: codergamesLandscape,
   },
   {
     title: 'Rika Data Refinement',
@@ -350,7 +305,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/rika-data-refinement/',
     repo: 'https://github.com/mazsola739/rika-data-refinement',
     image: rikaDataRefinement,
-    landscape: rikaDataRefinementLandscape,
   },
   {
     title: "Rika's One Night Ultimate Game",
@@ -370,7 +324,6 @@ export const projects: Project[] = [
     ],
     live: 'https://mazsola739.github.io/rika-onug-showcase/',
     image: rikaOnug,
-    landscape: rikaOnugLandscape,
   },
   {
     title: 'Wicked Plan',
@@ -382,7 +335,6 @@ export const projects: Project[] = [
     live: 'https://mazsola739.github.io/wicked-plan/',
     repo: 'https://github.com/mazsola739/wicked-plan',
     image: wickedPlan,
-    landscape: wickedPlanLandscape,
   },
 ]
 
