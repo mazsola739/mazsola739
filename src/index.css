@@ -200,7 +200,8 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    scrollbar-color: color-mix(in oklab, var(--color-muted) 55%, var(--color-page)) var(--color-page);
+    scrollbar-color: color-mix(in oklab, var(--color-muted) 55%, var(--color-page))
+      var(--color-page);
   }
 
   @media (prefers-reduced-motion: reduce) {
