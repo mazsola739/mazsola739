@@ -57,8 +57,8 @@ const ORDERS: Record<
 
 /**
  * The switch with its text. `stop` is the line's colour where the button sits: the line runs
- * into it, and its border takes that colour; `scroll` brings the top of the projects back into view (for the bottom switch, which
- * would otherwise leave the visitor at the far end of the new order).
+ * into it, and its border takes that colour; `scroll` jumps back to the top of the projects (for
+ * the bottom switch, which would otherwise leave the visitor at the far end of the new order).
  */
 function OrderSwitch({
   order,
@@ -87,7 +87,8 @@ function OrderSwitch({
         style={{ '--stop': stop } as CSSProperties}
         onClick={() => {
           onChange(next)
-          if (scroll) document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+          // A jump, not a smooth scroll: gliding up the whole page would only be a blur.
+          if (scroll) document.getElementById('projects')?.scrollIntoView({ behavior: 'instant' })
         }}
       >
         {icon}
